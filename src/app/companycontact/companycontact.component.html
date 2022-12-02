@@ -1,0 +1,136 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+  <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+  <strong>Info!</strong> {{statusMessage}}
+</div>
+<div class="page-header">
+  <h3 class="page-title">
+    Point of Contact
+  </h3>
+</div>
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Company</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="companyId" name="companyId" formControlName="companyId"
+                [ngClass]="{ 'is-invalid': submitted && formControls.companyId.errors }">
+                <option value="">Choose a Company</option>
+                <option *ngFor="let company of companyDetails" [ngValue]="company.companyId">{{ company.companyName }}
+                </option>
+              </select>
+              <div *ngIf="submitted && formControls.companyId.errors" class="invalid-feedback">
+                <div *ngIf="formControls.companyId.errors.required">Company is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="contactName" class="col-sm-2.5 col-form-label">Contact Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="contactName" formControlName="contactName" name="contactName"
+                placeholder="Contact Name" [ngClass]="{ 'is-invalid': submitted && formControls.contactName.errors }">
+              <div *ngIf="submitted && formControls.contactName.errors" class="invalid-feedback">
+                <div *ngIf="formControls.contactName.errors.required">Contact Name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-2.5 col-form-label">Email</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" formControlName="email" name="email"
+                placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+              <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+                <div *ngIf="formControls.email.errors.required">Email is required</div>
+                <div *ngIf="formControls.email.errors && formControls.email.errors.pattern">
+                  Email is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="contactNumber" class="col-sm-2.5 col-form-label">Contact Number</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber"
+                name="contactNumber" placeholder="Contact Number" (keypress)="numberOnly($event)" minlength="10"
+                maxlength="10" [ngClass]="{ 'is-invalid': submitted && formControls.contactNumber.errors }">
+              <div *ngIf="submitted && formControls.contactNumber.errors" class="invalid-feedback">
+                <div *ngIf="formControls.contactNumber.errors.required">Contact Number is required</div>
+                <div *ngIf="formControls.contactNumber.errors.minlength">Contact Number must have 10 characters</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="alternateNumber" class="col-sm-2.5 col-form-label">Alternate Number</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="alternateNumber" formControlName="alternateNumber"
+                name="alternateNumber" placeholder="Alternate Number" (keypress)="numberOnly($event)" maxlength="10" minlength="10">
+                <div *ngIf="submitted && formControls.contactNumber.errors" class="invalid-feedback">
+                  <div *ngIf="formControls.contactNumber.errors.minlength">Alternate Number must have 10 characters</div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Product</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="productId" name="productId" formControlName="productId"
+                [ngClass]="{ 'is-invalid': submitted && formControls.productId.errors }">
+                <option value="">Choose a Product</option>
+                <option *ngFor="let product of products" [ngValue]="product.productId">{{ product.productName }}
+                </option>
+              </select>
+              <div *ngIf="submitted && formControls.productId.errors" class="invalid-feedback">
+                <div *ngIf="formControls.productId.errors.required">Product is required</div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+    <div class="card">
+      <div class="card-body" *ngIf="companyContact.length > 0">
+        <table *ngIf="companyContact" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Company</th>
+              <th>Product</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of companyContact">
+              <td>{{contact.contactName}}</td>
+              <td>{{contact.email}}</td>
+              <td>{{contact.contactNumber}}</td>
+              <td>{{contact.companyName}}</td>
+              <td>{{contact.productName}}</td>
+              <td>
+                <button class="btn btn-outline-success" (click)="editCompanyContact(contact)"> Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteCompanyContact(contact)"
+                  style="margin-left: 20px;">
+                  Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="companyContact.length === 0">
+        No Records
+      </div>
+    </div>
+  </div>
+</div>

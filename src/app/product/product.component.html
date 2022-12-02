@@ -1,0 +1,71 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+  <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+  <strong>Info!</strong> {{statusMessage}}
+</div>
+<div class="page-header">
+  <h3 class="page-title">
+    Product Details
+  </h3>
+</div>
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label for="roleName" class="col-sm-2.5 col-form-label">Product Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="productName" formControlName="productName" name="productName"
+                placeholder="Product Name"  [ngClass]="{ 'is-invalid': submitted && formControls.productName.errors }">
+                <div *ngIf="submitted && formControls.productName.errors" class="invalid-feedback">
+                  <div *ngIf="formControls.productName.errors.required">Product Name is required</div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="businessTypeName" class="col-sm-2.5 col-form-label">Active</label>
+            <div class="col-sm-4">
+              <input type="checkbox" class="form-control" id="active" formControlName="active" style="width: 6%;"
+                name="active" checked>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+    <div class="card">
+      <div class="card-body" *ngIf="productDetails.length > 0">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Active</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productDetails">
+              <td>{{product.productName}}</td>
+              <td>{{product.active}}</td>
+              <td>
+                <button class="btn btn-outline-success" (click)="editProduct(product)"> Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteProduct(product)" style="margin-left: 20px;">
+                  Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="productDetails.length === 0">
+        No Records
+      </div>
+    </div>
+  </div>
+</div>

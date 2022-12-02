@@ -1,0 +1,97 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+    <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+    <strong>Info!</strong> {{statusMessage}}
+</div>
+<div class="page-header">
+    <h3 class="page-title">
+        Fund Transaction Details
+    </h3>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group row" *ngIf="currentLoginUser.role==='Super Admin'">
+                        <label class="col-sm-3 col-form-label">Company Name</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="companyId" name="companyId" formControlName="companyId"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.companyId.errors }">
+                                <option value="">Choose a Company Name</option>
+                                <option *ngFor="let comp of company" [ngValue]="comp.companyId">{{ comp.companyName }}
+                                </option>
+                            </select>
+                            <div *ngIf="currentLoginUser.role==='Super Admin' && submitted && formControls.companyId.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="formControls.companyId.errors.required">Company Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Mode of Payment</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="paymentTypeId" name="paymentTypeId"
+                                formControlName="paymentTypeId"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.paymentTypeId.errors }">
+                                <option value="">Choose a Mode of Payment</option>
+                                <option *ngFor="let payment of paymentType" [ngValue]="payment.paymentTypeId">{{
+                                    payment.paymentTypeName }}</option>
+                            </select>
+                            <div *ngIf="submitted && formControls.paymentTypeId.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.paymentTypeId.errors.required">Mode of Payment is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Amount" class="col-sm-2.5 col-form-label">Add Money</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="amount" formControlName="amount" name="amount"
+                                placeholder="Amount" (keypress)="numberOnly($event)"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.amount.errors }">
+                            <div *ngIf="submitted && formControls.amount.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.amount.errors.required">Amount is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary mr-2"> Add Money</button>
+                    <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+        <div class="card">
+            <div class="card-body" *ngIf="fundTransactionHistory.length > 0">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th *ngIf="currentLoginUser.role==='Super Admin'">Company</th>
+                            <th>Payment Type</th>
+                            <th>Amount</th>
+                            <th>Added By</th>
+                            <th>Added Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let fundTransactions of fundTransactionHistory">
+                            <td *ngIf="currentLoginUser.role==='Super Admin'">{{fundTransactions.companyName}}</td>
+                            <td>{{fundTransactions.modeOfPayment}}</td>
+                            <td>{{fundTransactions.amount|currency:"INR":"symbol"}}</td>
+                            <td>{{fundTransactions.addedBy}}</td>
+                            <td>{{ fundTransactions.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="fundTransactionHistory.length === 0">
+                No Records
+            </div>
+        </div>
+    </div>
+</div>

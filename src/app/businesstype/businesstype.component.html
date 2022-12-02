@@ -1,0 +1,75 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+  <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+  <strong>Info!</strong> {{statusMessage}}
+</div>
+
+<div class="page-header">
+  <h3 class="page-title">
+    Business Type Details
+  </h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label for="businessTypeName" class="col-sm-2.5 col-form-label">Business Type Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="businessTypeName" formControlName="businessTypeName"
+                name="businessTypeName" placeholder="Business Type Name"
+                [ngClass]="{ 'is-invalid': submitted && formControls.businessTypeName.errors }">
+              <div *ngIf="submitted && formControls.businessTypeName.errors" class="invalid-feedback">
+                <div *ngIf="formControls.businessTypeName.errors.required">Business Type Name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="active" class="col-sm-2.5 col-form-label">Active</label>
+            <div class="col-sm-4">
+              <input type="checkbox" class="form-control" id="active" formControlName="active" checked="active"
+                style="width: 6%;" name="active">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+    <div class="card">
+      <div class="card-body" *ngIf="businessTypes.length > 0">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Business Type</th>
+              <th>Active</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let business of businessTypes">
+              <td>{{business.businessTypeName}}</td>
+              <td>{{business.active}}</td>
+              <td>
+                <button class="btn btn-outline-success" (click)="editBusinessType(business)"> Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteBusinessType(business)"
+                  style="margin-left: 20px;">
+                  Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="businessTypes.length === 0">
+        No Records
+      </div>
+    </div>
+  </div>
+</div>

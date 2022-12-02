@@ -1,0 +1,159 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+  <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+  <strong>Info!</strong> {{statusMessage}}
+</div>
+<div class="page-header">
+  <h3 class="page-title">
+    Employee Details
+  </h3>
+</div>
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label for="employeeNumber" class="col-sm-2.5 col-form-label">Employee Number</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="employeeNumber" formControlName="employeeNumber"
+                name="employeeNumber" placeholder="Employee Number" (keypress)="numberOnly($event)"
+                [ngClass]="{ 'is-invalid': submitted && formControls.employeeNumber.errors }">
+              <div *ngIf="submitted && formControls.employeeNumber.errors" class="invalid-feedback">
+                <div *ngIf="formControls.employeeNumber.errors.required">Employee Number is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="employeeName" class="col-sm-2.5 col-form-label">Employee Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="employeeName" formControlName="employeeName"
+                name="employeeName" placeholder="Employee Name"
+                [ngClass]="{ 'is-invalid': submitted && formControls.employeeName.errors }">
+              <div *ngIf="submitted && formControls.employeeName.errors" class="invalid-feedback">
+                <div *ngIf="formControls.employeeName.errors.required">Employee Name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-2.5 col-form-label">Email</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" formControlName="email" name="email"
+                placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+              <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+                <div *ngIf="formControls.email.errors.required">Email is required</div>
+                <div *ngIf="formControls.email.errors && formControls.email.errors.pattern">
+                  Email is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="mobileNumber" class="col-sm-2.5 col-form-label">Mobile Number</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="mobileNumber" formControlName="mobileNumber"
+                name="mobileNumber" placeholder="Mobile Number" (keypress)="numberOnly($event)" minlength="10"
+                maxlength="10" [ngClass]="{ 'is-invalid': submitted && formControls.mobileNumber.errors }">
+              <div *ngIf="submitted && formControls.mobileNumber.errors" class="invalid-feedback">
+                <div *ngIf="formControls.mobileNumber.errors.required">Mobile Number is required</div>
+                <div *ngIf="formControls.mobileNumber.errors.minlength">Mobile Number must have 10 characters</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="currentLoginUser.role==='Super Admin'">
+            <label class="col-sm-3 col-form-label">Company Name</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="companyId" name="companyId" formControlName="companyId"
+                [ngClass]="{ 'is-invalid': submitted && formControls.companyId.errors }">
+                <option value="">Choose a Company</option>
+                <option *ngFor="let comp of company" [ngValue]="comp.companyId">{{ comp.companyName }}</option>
+              </select>
+              <div *ngIf="currentLoginUser.role==='Super Admin' && submitted && formControls.companyId.errors"
+                class="invalid-feedback">
+                <div *ngIf="formControls.companyId.errors.required">Company is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Role Name</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="roleId" name="roleId" formControlName="roleId"
+                [ngClass]="{ 'is-invalid': submitted && formControls.roleId.errors }">
+                <option value="">Choose a Role</option>
+                <option *ngFor="let role of roles" [ngValue]="role.roleId">{{ role.roleName }}</option>
+              </select>
+              <div *ngIf="submitted && formControls.roleId.errors" class="invalid-feedback">
+                <div *ngIf="formControls.roleId.errors.required">Role is required</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label for="moneyBalance" class="col-sm-2.5 col-form-label">Money Balance</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="moneyBalance" formControlName="moneyBalance"
+                name="moneyBalance" placeholder="Money Balance" (keypress)="numberOnly($event)">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="perkValue" class="col-sm-2.5 col-form-label">Perk Value</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="perkValue" formControlName="perkValue" name="perkValue"
+                placeholder="Perk Value" (keypress)="numberOnly($event)">
+            </div>
+          </div> -->
+          <div class="form-group row">
+            <label for="active" class="col-sm-2.5 col-form-label">Active</label>
+            <div class="col-sm-4">
+              <input type="checkbox" class="form-control" id="active" formControlName="active" style="width: 6%;"
+                name="active" checked="active">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+    <div class="card">
+      <div class="card-body" *ngIf="employeeDetails.length > 0">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th *ngIf="currentLoginUser.role==='Super Admin'">Company</th>
+              <th>Role</th>
+              <th>active</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employeeDetails">
+              <td>{{employee.employeeName}}</td>
+              <td>{{employee.email}}</td>
+              <td>{{employee.mobileNumber}}</td>
+              <td *ngIf="currentLoginUser.role==='Super Admin'">{{employee.companyName}}</td>
+              <td>{{employee.roleName}}</td>
+              <td>{{employee.active}}</td>
+              <td>
+                <button class="btn btn-outline-success" (click)="editEmployee(employee)"> Edit</button>
+                <button class="btn btn-outline-danger" (click)="deleteEmployee(employee)" style="margin-left: 20px;">
+                  Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="employeeDetails.length === 0">
+        No Records
+      </div>
+    </div>
+  </div>
+</div>
