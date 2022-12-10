@@ -1,5 +1,5 @@
-export interface FundTransaction {
-    fundTransactionHistoryId: number;
+export interface CompanyFundTransaction {
+    companyFundTransactionId: number;
     companyId:number;
     companyName:string;
     amount: number;

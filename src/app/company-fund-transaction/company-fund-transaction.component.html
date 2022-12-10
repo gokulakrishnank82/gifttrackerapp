@@ -67,7 +67,7 @@
 <div class="row">
     <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
         <div class="card">
-            <div class="card-body" *ngIf="fundTransactionHistory.length > 0">
+            <div class="card-body" *ngIf="companyFundTransactions.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -79,17 +79,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let fundTransactions of fundTransactionHistory">
-                            <td *ngIf="currentLoginUser.role==='Super Admin'">{{fundTransactions.companyName}}</td>
-                            <td>{{fundTransactions.modeOfPayment}}</td>
-                            <td>{{fundTransactions.amount|currency:"INR":"symbol"}}</td>
-                            <td>{{fundTransactions.addedBy}}</td>
-                            <td>{{ fundTransactions.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+                        <tr *ngFor="let companyFund of companyFundTransactions">
+                            <td *ngIf="currentLoginUser.role==='Super Admin'">{{companyFund.companyName}}</td>
+                            <td>{{companyFund.modeOfPayment}}</td>
+                            <td>{{companyFund.amount|currency:"INR":"symbol"}}</td>
+                            <td>{{companyFund.addedBy}}</td>
+                            <td>{{ companyFund.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div *ngIf="fundTransactionHistory.length === 0">
+            <div *ngIf="companyFundTransactions.length === 0">
                 No Records
             </div>
         </div>

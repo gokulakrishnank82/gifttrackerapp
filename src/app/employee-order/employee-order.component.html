@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h3 class="page-title">
+        Employee Order Details
+    </h3>
+</div>
+<div class="row">
+    <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
+        <div class="card">
+            <div class="card-body" *ngIf="employeeOrder.length > 0">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Catalog Name</th>
+                            <th>Catalog Type</th>
+                            <th>CardValue</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>DeliveryMode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employeeOrder">
+                            <td>{{employee.catalogName}}</td>
+                            <td>{{employee.catalogType}}</td>
+                            <td>{{employee.cardValue}}</td>
+                            <td>{{employee.quantity}}</td>
+                            <td>{{employee.total}}</td>
+                            <td>{{employee.deliveryMode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="employeeOrder.length === 0">
+                No Records
+            </div>
+        </div>
+    </div>
+</div>

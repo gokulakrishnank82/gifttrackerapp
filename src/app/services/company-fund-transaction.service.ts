@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { FundTransaction } from '../models/fundtransaction';
+import { CompanyFundTransaction } from '../models/company-fund-transaction';
 import { Observable, throwError, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BaseResponse } from '../models/baseresponse';
@@ -8,19 +8,19 @@ import { BaseResponse } from '../models/baseresponse';
 @Injectable({
   providedIn: 'root'
 })
-export class FundTransactionService {
+export class CompanyFundTransactionService {
   constructor(private httpClient: HttpClient) { }
 
-  getFundTransactionHistory(): Observable<FundTransaction[]> {
-    return this.httpClient.get<FundTransaction[]>(`${environment.apiUrl}fundtransactionhistory/`).pipe(
+  getCompanyFundTransaction(): Observable<CompanyFundTransaction[]> {
+    return this.httpClient.get<CompanyFundTransaction[]>(`${environment.apiUrl}companyfundtransaction/`).pipe(
       catchError(this.errorHandler))
   }
-  getFundTransactionHistoryById(id: number): Observable<FundTransaction> {
-    return this.httpClient.get<FundTransaction>(`${environment.apiUrl}fundtransactionhistory/` + id).pipe(
+  getCompanyFundTransactionById(id: number): Observable<CompanyFundTransaction> {
+    return this.httpClient.get<CompanyFundTransaction>(`${environment.apiUrl}companyfundtransaction/` + id).pipe(
       catchError(this.errorHandler))
   }
-  createFundTransactionHistory(fundTransaction: FundTransaction): Observable<BaseResponse> {
-    return this.httpClient.post<BaseResponse>(`${environment.apiUrl}fundtransactionhistory/`, fundTransaction).pipe(
+  createCompanyFundTransaction(companyFundTransaction: CompanyFundTransaction): Observable<BaseResponse> {
+    return this.httpClient.post<BaseResponse>(`${environment.apiUrl}companyfundtransaction/`, companyFundTransaction).pipe(
       catchError(this.errorHandler))
   }
   errorHandler(error: any) {

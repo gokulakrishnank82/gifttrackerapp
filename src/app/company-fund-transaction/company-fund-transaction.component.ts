@@ -2,24 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { PaymenttypeService } from '../services/paymenttype.service';
-import { FundTransactionService } from '../services/fund-transaction.service';
+import { CompanyFundTransactionService } from '../services/company-fund-transaction.service';
 import { PaymentType } from '../models/paymenttype';
-import { FundTransaction } from '../models/fundtransaction';
+import { CompanyFundTransaction } from '../models/company-fund-transaction';
 import { LoginService } from '../services/login.service';
 import { LogInIser } from '../models/loginuser';
 import { Company } from '../models/company';
 import { CompanyService } from '../services/company.service';
 
 @Component({
-  selector: 'app-fund-transaction',
-  templateUrl: './fund-transaction.component.html',
-  styleUrls: ['./fund-transaction.component.scss']
+  selector: 'app-company-fund-transaction',
+  templateUrl: './company-fund-transaction.component.html',
+  styleUrls: ['./company-fund-transaction.component.scss']
 })
-export class FundTransactionComponent implements OnInit {
+export class CompanyFundTransactionComponent implements OnInit {
 
   company: Company[] = [];
   paymentType: PaymentType[] = [];
-  fundTransactionHistory: FundTransaction[] = [];
+  companyFundTransactions: CompanyFundTransaction[] = [];
   addForm: FormGroup;
   currentLoginUser: LogInIser;
   statusMessage: string = '';
@@ -32,7 +32,7 @@ export class FundTransactionComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
     private router: Router,
     public paymentService: PaymenttypeService,
-    public apiService: FundTransactionService,
+    public apiService: CompanyFundTransactionService,
     public authenticationService: LoginService,
     public companyService: CompanyService,
   ) { }
@@ -44,14 +44,14 @@ export class FundTransactionComponent implements OnInit {
       return;
     }
     this.intialFormValue();
-    this.getFundTransactionHistory();
+    this.getCompanyFundTransactionDetails();
     this.getPaymentType();
     this.getCompany();
   }
 
   intialFormValue() {
     this.addForm = this.formBuilder.group({
-      fundTransactionHistoryId: [''],
+      companyFundTransactionId: [''],
       companyId: [''],
       amount: ['', Validators.required],
       paymentTypeId: ['', Validators.required],
@@ -71,11 +71,10 @@ export class FundTransactionComponent implements OnInit {
       });
   }
 
-  getFundTransactionHistory() {
-    this.apiService.getFundTransactionHistory()
+  getCompanyFundTransactionDetails() {
+    this.apiService.getCompanyFundTransaction()
       .subscribe(data => {
-        this.fundTransactionHistory = data;
-        console.log(data);
+        this.companyFundTransactions = data;
       });
   }
 
@@ -83,7 +82,6 @@ export class FundTransactionComponent implements OnInit {
     this.paymentService.getPaymentType()
       .subscribe(data => {
         this.paymentType = data;
-        console.log(data);
       });
   }
 
@@ -92,22 +90,22 @@ export class FundTransactionComponent implements OnInit {
     this.submitted = true;
     if (this.currentLoginUser.role != "Super Admin")
       this.addForm.value['companyId'] = this.currentLoginUser.companyId
-    
+
     if (this.addForm.invalid) {
       return;
     }
     this.submitted = false;
-    this.addForm.value["fundTransactionHistoryId"] = 0;
+    this.addForm.value["companyFundTransactionId"] = 0;
     this.addForm.value["createdBy"] = this.currentLoginUser.employeeId;
     this.addForm.value["createdTime"] = new Date();
-    this.apiService.createFundTransactionHistory(this.addForm.value)
+    this.apiService.createCompanyFundTransaction(this.addForm.value)
       .subscribe(data => {
         this.ProcesssResponse(data)
       });
   }
   ProcesssResponse(data) {
     if (data.statusCode === 200) {
-      this.getFundTransactionHistory();
+      this.getCompanyFundTransactionDetails();
       this.addForm.reset();
       this.isSuccess = true;
       this.intialFormValue();

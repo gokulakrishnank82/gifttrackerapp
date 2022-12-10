@@ -25,8 +25,14 @@ import { RoleComponent } from './role/role.component';
 import { LoginComponent } from './login/login.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import { EmployeeTransactionComponent } from './employee-transaction/employee-transaction.component';
-import { FundTransactionComponent } from './fund-transaction/fund-transaction.component';
+import { EmployerFundDistributionComponent } from './employer-fund-distribution/employer-fund-distribution.component'
+import { CompanyFundTransactionComponent } from './company-fund-transaction/company-fund-transaction.component';
+import { EmployeeFundHistoryComponent } from './employee-fund-history/employee-fund-history.component';
+import { EmployeeOrderComponent } from './employee-order/employee-order.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { CatalogTypeComponent } from './catalog-type/catalog-type.component';
+import { GiftCardComponent } from './gift-card/gift-card.component';
+import { CouponComponent } from './coupon/coupon.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +53,14 @@ import { FundTransactionComponent } from './fund-transaction/fund-transaction.co
     LoginComponent,
     ChangepasswordComponent,
     ForgetpasswordComponent,
-    EmployeeTransactionComponent,
-    FundTransactionComponent
+    EmployerFundDistributionComponent,
+    CompanyFundTransactionComponent,
+    EmployeeFundHistoryComponent,
+    EmployeeOrderComponent,
+    CatalogComponent,
+    CatalogTypeComponent,
+    GiftCardComponent,
+    CouponComponent
   ],
   imports: [
     BrowserModule,

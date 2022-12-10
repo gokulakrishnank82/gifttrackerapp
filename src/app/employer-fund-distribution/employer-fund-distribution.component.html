@@ -1,0 +1,104 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+    <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+    <strong>Info!</strong> {{statusMessage}}
+</div>
+<div class="page-header">
+    <h3 class="page-title">
+        Employee Transaction Details
+    </h3>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <h3>Employee Search</h3>
+            <h3>Total Available Funds : {{totalAvailableFund|currency:"INR":"symbol"}} </h3>
+            <div class="card-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Select Perk Type </label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="perkType" name="perkType" formControlName="perkType"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.perkType.errors }"
+                                (change)='perkTypeChange($event)'>
+                                <option value="1">Individual</option>
+                                <option value="2">Multiple</option>
+                            </select>
+                            <div *ngIf="submitted && formControls.perkType.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.perkType.errors.required">Perk Type is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="perkValue =='1'">
+                        <label for="employeeId" class="col-sm-2.5 col-form-label">Employee ID</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="employeeId" formControlName="employeeId"
+                                name="employeeId" placeholder="Employee ID" (keypress)="numberOnly($event)"
+                                list="employeeIds" (change)="bindEmployeeDetails($event,'employeeId')">
+                            <datalist id="employeeIds">
+                                <option *ngFor="let employee of employeeDetails" [value]="employee.employeeId">
+                                    {{employee.employeeId}}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="perkValue =='1'">
+                        <label for="employeeName" class="col-sm-2.5 col-form-label">Employee Name</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="employeeName" formControlName="employeeName"
+                                name="employeeName" placeholder="Employee Name" (keyup)="getEmployeeByType($event)"
+                                list="employeeNames" (change)="bindEmployeeDetails($event,'name')">
+                            <datalist id="employeeNames">
+                                <option *ngFor="let employee of employeeDetails" [value]="employee.employeeName">
+                                    {{employee.employeeName}}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="perkValue =='1'">
+                        <label for="email" class="col-sm-2.5 col-form-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="email" formControlName="email" name="email"
+                                placeholder="Email" (keyup)="getEmployeeByType($event)" list="employeeEmails"
+                                (change)="bindEmployeeDetails($event,'email')">
+                            <datalist id="employeeEmails">
+                                <option *ngFor="let employee of employeeDetails" [value]="employee.email">
+                                    {{employee.email}}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="perkValue =='1'">
+                        <label for="employeeNumber" class="col-sm-2.5 col-form-label">Employee Number</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="employeeNumber" formControlName="employeeNumber"
+                                name="employeeNumber" placeholder="Employee Number" (keyup)="getEmployeeByType($event)"
+                                list="employeeNumbers" (change)="bindEmployeeDetails($event,'number')">
+                            <datalist id="employeeNumbers">
+                                <option *ngFor="let employee of employeeDetails" [value]="employee.employeeNumber">
+                                    {{employee.employeeNumber}}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="comment" class="col-sm-2.5 col-form-label">Comments</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="comment" formControlName="comment"
+                                name="comment" placeholder="Comments">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Perk Value </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="perkValue" formControlName="perkValue"
+                                name="perkValue" placeholder="Perk Value" (keypress)="numberOnly($event)"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.perkValue.errors }">
+                            <div *ngIf="submitted && formControls.perkValue.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.perkValue.errors.required">Perk Value is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2"> Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

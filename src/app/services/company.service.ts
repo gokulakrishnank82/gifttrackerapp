@@ -11,10 +11,6 @@ import { BaseResponse } from '../models/baseresponse';
 export class CompanyService {
   constructor(private httpClient: HttpClient) { }
 
-  // getAll(): Observable<Tutorial[]> {
-  //   return this.http.get<Tutorial[]>(baseUrl);
-  // }
-
   getCompany(): Observable<Company[]> {
     return this.httpClient.get<Company[]>(`${environment.apiUrl}company/`).pipe(
       catchError(this.errorHandler))

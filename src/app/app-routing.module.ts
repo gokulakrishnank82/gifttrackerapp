@@ -11,8 +11,13 @@ import { RoleComponent } from './role/role.component';
 import { LoginComponent } from './login/login.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
-import { EmployeeTransactionComponent } from './employee-transaction/employee-transaction.component';
-import { FundTransactionComponent } from './fund-transaction/fund-transaction.component';
+import { EmployerFundDistributionComponent } from './employer-fund-distribution/employer-fund-distribution.component'
+import { CompanyFundTransactionComponent } from './company-fund-transaction/company-fund-transaction.component';
+import { EmployeeFundHistoryComponent } from './employee-fund-history/employee-fund-history.component'
+import { CatalogComponent } from './catalog/catalog.component'
+import { EmployeeOrderComponent } from './employee-order/employee-order.component'
+import { GiftCardComponent } from './gift-card/gift-card.component'
+import { CouponComponent } from './coupon/coupon.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,13 +27,18 @@ const routes: Routes = [
   { path: 'company', component: CompanyComponent },
   { path: 'companycontact', component: CompanycontactComponent },
   { path: 'employee', component: EmployeeComponent },
-  { path: 'employeetransaction', component: EmployeeTransactionComponent },
-  { path: 'fundtransaction', component: FundTransactionComponent },
+  { path: 'employerfunddistribution', component: EmployerFundDistributionComponent },
+  { path: 'companyfundtransaction', component: CompanyFundTransactionComponent },
   { path: 'paymenttype', component: PaymenttypeComponent },
   { path: 'product', component: ProductComponent },
   { path: 'role', component: RoleComponent },
+  { path: 'giftcatalog', component: GiftCardComponent },
+  { path: 'coupon', component: CouponComponent },
   { path: 'change-password', component: ChangepasswordComponent },
   { path: 'forget-password', component: ForgetpasswordComponent },
+  { path: 'catagory', component: CatalogComponent },
+  { path: 'employeeorder', component: EmployeeOrderComponent },
+  { path: 'employeefundhistory', component: EmployeeFundHistoryComponent },
   { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   { path: 'general-pages', loadChildren: () => import('./general-pages/general-pages.module').then(m => m.GeneralPagesModule) },
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },

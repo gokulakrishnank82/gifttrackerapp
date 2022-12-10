@@ -1,0 +1,107 @@
+<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+    <strong>Success!</strong> saved successfully.
+</div>
+<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
+    <strong>Info!</strong> {{statusMessage}}
+</div>
+
+<div class="page-header">
+    <h3 class="page-title">
+        Gift Card Details
+    </h3>
+</div>
+
+<div class="row" *ngIf="isTileShow">
+    <div class="col-md-4 stretch-card grid-margin" *ngFor="let catalog of catalogs">
+        <div class="card bg-gradient-success card-img-holder text-white">
+            <div class="card-body">
+                <a [routerLink]="[]" (click)="showCouponDetail(catalog.catalogId,catalog.catalogName)">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">{{catalog.catalogName}}
+                        <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">95,5741</h2>
+                    <h6 class="card-text">Increased by 5%</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!isTileShow">
+    <div class="col-md-4 stretch-card grid-margin">
+        <div class="card bg-gradient-success card-img-holder text-white">
+            <div class="card-body">
+                <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                <h4 class="font-weight-normal mb-3">{{selectedCatalogName}}
+                    <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                </h4>
+                <h2 class="mb-5">95,5741</h2>
+                <h6 class="card-text">Increased by 5%</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 stretch-card grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <label for="cardValue" class="col-sm-2.5 col-form-label">Enter Card Value</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="cardValue" formControlName="cardValue"
+                                name="cardValue" placeholder="Enter card Value" (keypress)="numberOnly($event,'card')"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.cardValue.errors }">
+                            <div *ngIf="submitted && formControls.cardValue.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.cardValue.errors.required">Card Value is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="quantity" class="col-sm-2.5 col-form-label">Quantity</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="quantity" formControlName="quantity"
+                                name="quantity" placeholder="Quantity" (keypress)="numberOnly($event,'card')" (change)="calc()"
+                                [ngClass]="{ 'is-invalid': submitted && formControls.quantity.errors }">
+                            <div *ngIf="submitted && formControls.quantity.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.quantity.errors.required">Quantity is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="total" class="col-sm-2.5 col-form-label">Total</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="total" formControlName="total" name="total"
+                                placeholder="Total" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="deliveryMode" class="col-sm-2.5 col-form-label">Delivery Mode</label>
+                        <div class="col-sm-4">
+                            <label style="padding: 1 1 1 1px;">
+                                <input type="radio" value="SMS" formControlName="deliveryMode">
+                                <span>SMS</span>
+                            </label>
+                            <label style="padding: 1 1 1 1px;">
+                                <input type="radio" value="Email" formControlName="deliveryMode">
+                                <span>Email</span>
+                            </label>
+                            <label style="padding: 1 1 1 1px;">
+                                <input type="radio" value="Both" formControlName="deliveryMode">
+                                <span>Both</span>
+                            </label>
+                            <!-- <input type="text" class="form-control" id="deliveryMode" formControlName="deliveryMode"
+                                name="deliveryMode" placeholder="Delivery Mode"> -->
+                            <!-- [ngClass]="{ 'is-invalid': submitted && formControls.deliveryMode.errors }"> -->
+                            <!-- <div *ngIf="submitted && formControls.deliveryMode.errors" class="invalid-feedback">
+                                <div *ngIf="formControls.deliveryMode.errors.required">Business Type Name is
+                                    required</div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+                    <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

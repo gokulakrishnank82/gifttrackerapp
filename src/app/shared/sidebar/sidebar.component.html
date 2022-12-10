@@ -7,20 +7,26 @@
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': businesstype.isActive }">
+    <!-- <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': businesstype.isActive }">
       <a class="nav-link" routerLink="/businesstype" routerLinkActive #businesstype="routerLinkActive">
         <span class="menu-title">Wallet</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
+    </li> -->
+    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': employeefundhistory.isActive }">
+      <a class="nav-link" routerLink="/employeefundhistory" routerLinkActive #employeefundhistory="routerLinkActive">
+        <span class="menu-title">Employee Fund History</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
     </li>
-    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': businesstype.isActive }">
-      <a class="nav-link" routerLink="/businesstype" routerLinkActive #businesstype="routerLinkActive">
+    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': giftcatalog.isActive }">
+      <a class="nav-link" routerLink="/giftcatalog" routerLinkActive #giftcatalog="routerLinkActive">
         <span class="menu-title">Gift Card Catalog</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': businesstype.isActive }">
-      <a class="nav-link" routerLink="/businesstype" routerLinkActive #businesstype="routerLinkActive">
+    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': coupon.isActive }">
+      <a class="nav-link" routerLink="/coupon" routerLinkActive #coupon="routerLinkActive">
         <span class="menu-title">Coupons Catalog</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
@@ -49,15 +55,29 @@
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li *ngIf="isSuperAdmin || isAdmin" class="nav-item" [ngClass]="{ 'active': fundtransaction.isActive }">
-      <a class="nav-link" routerLink="/fundtransaction" routerLinkActive #fundtransaction="routerLinkActive">
-        <span class="menu-title">Fund Transaction</span>
+    <li *ngIf="isAdmin" class="nav-item" [ngClass]="{ 'active': companyfundtransaction.isActive }">
+      <a class="nav-link" routerLink="/companyfundtransaction" routerLinkActive
+        #companyfundtransaction="routerLinkActive">
+        <span class="menu-title">Company Fund Transaction</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li *ngIf="isSuperAdmin || isAdmin" class="nav-item" [ngClass]="{ 'active': employeetransaction.isActive }">
-      <a class="nav-link" routerLink="/employeetransaction" routerLinkActive #employeetransaction="routerLinkActive">
-        <span class="menu-title">Employee Transactions</span>
+    <li *ngIf="isAdmin" class="nav-item" [ngClass]="{ 'active': employerfunddistribution.isActive }">
+      <a class="nav-link" routerLink="/employerfunddistribution" routerLinkActive
+        #employerfunddistribution="routerLinkActive">
+        <span class="menu-title">Employer Fund Transactions</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li *ngIf="isSuperAdmin || isAdmin" class="nav-item" [ngClass]="{ 'active': catagory.isActive }">
+      <a class="nav-link" routerLink="/catagory" routerLinkActive #catagory="routerLinkActive">
+        <span class="menu-title">Catagory</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': employeeorder.isActive }">
+      <a class="nav-link" routerLink="/employeeorder" routerLinkActive #employeeorder="routerLinkActive">
+        <span class="menu-title">Employee Order</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
