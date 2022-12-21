@@ -1,20 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap/scss/functions";
+/*@import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import './assets/scss/variables';
 @import "~compass-mixins/lib/compass";
 @import "~compass-mixins/lib/animate";
 @import "~bootstrap/scss/bootstrap";
 @import "./assets/scss/fonts";
-@import "./assets/scss/functions";
+@import "./assets/scss/functions";*/
 
 /* === Icon fonts === */
-@import "~@mdi/font/scss/materialdesignicons";
+// @import "~@mdi/font/scss/materialdesignicons";
 
 
 /* === Template mixins === */
-@import "./assets/scss/mixins/animation";
+/*@import "./assets/scss/mixins/animation";
 @import "./assets/scss/mixins/badges";
 @import "./assets/scss/mixins/buttons";
 @import "./assets/scss/mixins/misc";
@@ -22,20 +22,20 @@
 @import "./assets/scss/mixins/cards";
 @import "./assets/scss/mixins/blockqoute";
 @import "./assets/scss/mixins/popovers";
-@import "./assets/scss/mixins/tooltips";
+@import "./assets/scss/mixins/tooltips";*/
 
 /* === Core Styles === */
-@import "./assets/scss/background";
+/*@import "./assets/scss/background";
 @import "./assets/scss/typography";
 @import "./assets/scss/reset";
 @import "./assets/scss/responsive";
 @import "./assets/scss/misc";
 @import "./assets/scss/utilities";
 @import "./assets/scss/demo";
-@import "./assets/scss/spinner";
+@import "./assets/scss/spinner";*/
 
 /* === Components === */
-@import "./assets/scss/components/forms";
+/*@import "./assets/scss/components/forms";
 @import "./assets/scss/components/checkbox-radio";
 @import "./assets/scss/components/icons";
 @import "./assets/scss/components/tables";
@@ -57,7 +57,46 @@
 @import "./assets/scss/components/portfolio";
 @import "./assets/scss/components/todo-list";
 
-@import "./assets/scss/components/landing-screens/auth";
+@import "./assets/scss/components/landing-screens/auth";*/
 
 /* === Layout === */
-@import "./assets/scss/layout";
+// @import "./assets/scss/layout";
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.loader {
+    border-top-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.customGiftCard {
+    padding: 25px;
+    height: 50%;
+}
+
+.customFormBk {
+    padding: 0 0 20px 0;
+}

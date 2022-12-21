@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://localhost:48447/api/'
+  apiUrl: 'http://13.126.92.15/gift-tracker-api/api/'
 };
 
 /*

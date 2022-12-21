@@ -1,13 +1,14 @@
-<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<!--<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
     <a class="navbar-brand brand-logo" routerLink="/">
-      <!-- <img src="assets/images/logo.svg" alt="logo" /> -->
-      Gift Tracker App
+     <img src="assets/images/logo.svg" alt="logo" /> -->
+<!-- Gift Tracker App
     </a>
     <a class="navbar-brand brand-logo-mini" routerLink="/"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-stretch">
-    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" (click)="toggleSidebar()">
+    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize"
+      (click)="toggleSidebar()">
       <span class="mdi mdi-menu"></span>
     </button>
     <ul class="navbar-nav navbar-nav-right">
@@ -38,7 +39,8 @@
           <i class="mdi mdi-email-outline"></i>
           <span class="count-symbol bg-warning"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu aria-labelledby="messageDropdown">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu
+          aria-labelledby="messageDropdown">
           <h6 class="p-3 mb-0">Messages</h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">
@@ -85,7 +87,8 @@
           <i class="mdi mdi-bell-outline"></i>
           <span class="count-symbol bg-danger"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu aria-labelledby="notificationDropdown">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu
+          aria-labelledby="notificationDropdown">
           <h6 class="p-3 mb-0">Notifications</h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">
@@ -134,8 +137,388 @@
         </div>
       </li>
     </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" (click)="toggleOffcanvas()">
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+      (click)="toggleOffcanvas()">
       <span class="mdi mdi-menu"></span>
     </button>
   </div>
-</nav>
+</nav>-->
+<div class="flex mt-[4.7rem] md:mt-0">
+  <!-- BEGIN: Side Menu -->
+  <nav class="side-nav">
+    <a href="" class="intro-x flex items-center pl-5 pt-4">
+      <img alt="Midone - HTML Admin Template" class="w-6" src="../assets/images/logo.svg">
+      <span class="hidden xl:block text-white text-lg ml-3"> Gift Tracker App </span>
+    </a>
+    <div class="side-nav__devider my-6"></div>
+    <ul>
+      <li>
+        <a href="javascript:;" class="side-menu">
+          <div class="side-menu__icon">
+            <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" icon-name="home" data-lucide="home" class="lucide lucide-home">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="side-menu__title">
+            Dashboard
+            <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+          </div>
+        </a>
+      </li>
+      <ng-container *ngIf="isNormalUser">
+        <li>
+          <a class="side-menu" [routerLink]="['/employeefundhistory']" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="shopping-bag" data-lucide="shopping-bag"
+                class="lucide lucide-shopping-bag">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 01-8 0"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Employee Fund History
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/giftcatalog" routerLinkActive="side-menu--active" class="side-menu">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i> --> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="layout" data-lucide="layout" class="lucide lucide-layout">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Gift Card Catalog
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu" routerLink="/coupon" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="box" data-lucide="box" class="lucide lucide-box">
+                <path
+                  d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Coupons Catalog
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/employeeorder" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="8" y2="9"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Employee Order
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isSuperAdmin">
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/businesstype" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="shopping-bag" data-lucide="shopping-bag"
+                class="lucide lucide-shopping-bag">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 01-8 0"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Business Type
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/company" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="8" y2="9"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Company
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/companycontact" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="credit-card" data-lucide="credit-card"
+                class="lucide lucide-credit-card">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Point of Contact
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isSuperAdmin || isAdmin">
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/employee" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="users" data-lucide="users" class="lucide lucide-users">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 010 7.75"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Employee
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/catagory" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="activity" data-lucide="activity" class="lucide lucide-activity">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Catagory
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isAdmin">
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/companyfundtransaction"
+            routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="hard-drive" data-lucide="hard-drive"
+                class="lucide lucide-hard-drive">
+                <line x1="22" y1="12" x2="2" y2="12"></line>
+                <path
+                  d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z">
+                </path>
+                <line x1="6" y1="16" x2="6.01" y2="16"></line>
+                <line x1="10" y1="16" x2="10.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Company Fund Transaction
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/employerfunddistribution"
+            routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="sidebar" data-lucide="sidebar" class="lucide lucide-sidebar">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Employer Fund Transactions
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isSuperAdmin">
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/paymenttype" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text">
+                <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="8" y2="9"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Payment Type
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/product" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="shopping-bag" data-lucide="shopping-bag"
+                class="lucide lucide-shopping-bag">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 01-8 0"></path>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Product
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" class="side-menu" routerLink="/role" routerLinkActive="side-menu--active">
+            <div class="side-menu__icon">
+              <!--<i data-lucide="home"></i>--> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" icon-name="box" data-lucide="box" class="lucide lucide-box">
+                <path
+                  d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="side-menu__title">
+              Role
+              <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+  <!-- END: Side Menu -->
+  <!-- BEGIN: Content -->
+  <div class="content">
+    <!-- BEGIN: Top Bar -->
+    <div class="top-bar">
+      <!-- BEGIN: Breadcrumb -->
+      <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Application</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+      </nav>
+      <!-- END: Breadcrumb -->
+      <!-- BEGIN: Search -->
+      <div class="intro-x relative mr-3 sm:mr-6">
+        <div class="search hidden sm:block">
+          <!--<input type="text" class="search__input form-control border-transparent" placeholder="Search...">
+          <i data-lucide="search" class="search__icon dark:text-slate-500"></i>-->
+        </div>
+      </div>
+      <!-- END: Search -->
+      <!-- BEGIN: Notifications -->
+      <div class="intro-x dropdown mr-auto sm:mr-6">
+        <!--<div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button"
+          aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="bell"
+            class="notification__icon dark:text-slate-500"></i> </div>
+        <div class="notification-content pt-2 dropdown-menu">
+          <div class="notification-content__box dropdown-content">
+            <div class="notification-content__title">Notifications</div>
+            <div class="cursor-pointer relative flex items-center ">
+              <div class="w-12 h-12 flex-none image-fit mr-1">
+                <img alt="Midone - HTML Admin Template" class="rounded-full" src="../assets/images/profile-3.jpg">
+                <div
+                  class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600">
+                </div>
+              </div>
+              <div class="ml-2 overflow-hidden">
+                <div class="flex items-center">
+                  <a href="javascript:;" class="font-medium truncate mr-5">Kate Winslet</a>
+                  <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">03:20 PM</div>
+                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">It is a long established fact that a reader will be
+                  distracted by the readable content of a page when looking at its layout. The point of using Lorem
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>-->
+      </div>
+      <!-- END: Notifications -->
+      <!-- BEGIN: Account Menu -->
+      <div class="intro-x dropdown w-8 h-8">
+        <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button"
+          aria-expanded="false" data-tw-toggle="dropdown">
+          <img alt="Midone - HTML Admin Template" src="../assets/images/profile-1.jpg">
+        </div>
+        <div class="dropdown-menu w-56">
+          <ul class="dropdown-content bg-primary text-white">
+            <li class="p-2">
+              <div class="font-medium">Kate Winslet</div>
+              <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Frontend Engineer</div>
+            </li>
+            <li>
+              <hr class="dropdown-divider border-white/[0.08]">
+            </li>
+            <li>
+              <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- END: Account Menu -->
+    </div>
+    <!-- END: Top Bar -->
+
+    <ng-content></ng-content>
+    <!-- BEGIN: ROUTER -->
+    <!--<div class="grid grid-cols-12 gap-6 mt-5">
+      <div class="intro-y col-span-12 lg:col-span-6">
+      </div>
+    </div>-->
+    <!-- END: ROUTER -->
+    <!-- END: Content -->
+  </div>
+</div>

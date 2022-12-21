@@ -27,10 +27,11 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/app.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js"
+              "src/assets/js/app.js"
             ]
           },
           "configurations": {

@@ -1,4 +1,4 @@
-<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
     <strong>Success!</strong> saved successfully.
 </div>
 <div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
@@ -39,8 +39,8 @@
                                 <div *ngIf="formControls.catalogTypeId.errors.required">Catalog Type is required</div>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="form-group row">
+                    </div>-->
+<!-- <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Upload Image</label>
                         <div class="col-sm-9">
                             <input type="file" class="custom-file-input" id="customFile"
@@ -48,7 +48,7 @@
                             <label class="custom-file-label" #labelImport for="customFile">Choose file</label>
                         </div>
                     </div> -->
-                    <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
+<!--<button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
                     <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
                 </form>
 
@@ -84,6 +84,204 @@
             </div>
             <div *ngIf="catalogs.length === 0">
                 No Records
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Catalog Details
+    </h2>
+</div>
+
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isSuccess!=1">
+    <div class="preview">
+        <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                icon-name="alert-triangle" data-lucide="alert-triangle"
+                class="lucide lucide-alert-triangle w-6 h-6 mr-2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg> <strong>Success!</strong>&nbsp;&nbsp; saved successfully.
+            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
+                    data-lucide="x" class="w-4 h-4"></i> </button>
+        </div>
+    </div>
+</div>
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isFail!=1">
+    <div class="preview">
+        <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                icon-name="alert-octagon" data-lucide="alert-octagon" class="lucide lucide-alert-octagon w-6 h-6 mr-2">
+                <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg><strong> Info! </strong>&nbsp;&nbsp; {{statusMessage}}
+            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
+                    data-lucide="x" class="w-4 h-4"></i> </button>
+        </div>
+    </div>
+</div>
+<div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
+
+    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+        <!--<div class="font-medium text-base">Profile Settings</div>-->
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+            <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-1" class="form-label">Catalog Name
+
+                    </label>
+                    <input type="text" class="form-control" id="catalogName" formControlName="catalogName"
+                        name="catalogName" placeholder="Catalog Name"
+                        [ngClass]="(submitted && formControls.catalogName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+                    <div *ngIf="submitted && formControls.catalogName.errors && formControls.catalogName.errors.required"
+                        class="text-danger mt-2">Catalog Name is required</div>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-1" class="form-label">Catalog Type
+                    </label>
+                    <select class="form-select" id="catalogTypeId" name="catalogTypeId" formControlName="catalogTypeId"
+                        [ngClass]="(submitted && formControls.catalogTypeId.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+
+                        <option value="">Choose a Catalog Type</option>
+                        <option *ngFor="let catalogType of catalogTypes" [ngValue]="catalogType.catalogTypeId">
+                            {{ catalogType.catalogTypeName }}</option>
+                    </select>
+                    <div *ngIf="submitted && formControls.catalogTypeId.errors && formControls.catalogTypeId.errors.required"
+                        class="text-danger mt-2">Catalog Type is required</div>
+                </div>
+
+
+                <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
+                    <button type="submit" class="btn btn-primary w-24">Submit</button>
+                    <button type="reset" class="btn btn-secondary w-24 ml-2" (click)="reset()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 lg:col-span-12">
+        <div class="intro-y box mt-5">
+
+            <div class="p-5" id="striped-rows-table">
+                <div class="preview">
+                    <div class="overflow-x-auto">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">Catalog Name</th>
+                                    <th class="whitespace-nowrap">Catalog Type</th>
+                                    <th class="whitespace-nowrap">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let catalog of catalogs">
+                                    <td>{{catalog.catalogName}}</td>
+                                    <td>{{catalog.catalogType}}</td>
+                                    <td>
+                                        <!--<button class="btn btn-outline-success" (click)="editCatalog(catalog)">
+                                            Edit</button>
+                                        <button class="btn btn-outline-danger" (click)="deleteCatalog(catalog)"
+                                            style="margin-left: 20px;">
+                                            Delete</button>-->
+                                        <div class="flex  items-center">
+                                            <a class="edit flex items-center mr-3" href="javascript:;"
+                                                (click)="editCatalog(catalog)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    icon-name="check-square" data-lucide="check-square"
+                                                    class="lucide lucide-check-square w-4 h-4 mr-1">
+                                                    <polyline points="9 11 12 14 22 4"></polyline>
+                                                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11">
+                                                    </path>
+                                                </svg> Edit
+                                            </a>
+                                            <a class="delete flex items-center text-danger" href="javascript:;"
+                                                (click)="deleteCatalog(catalog)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    icon-name="trash-2" data-lucide="trash-2"
+                                                    class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path
+                                                        d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2">
+                                                    </path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
+                        <nav class="w-full sm:w-auto sm:mr-auto">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevrons-left" class="lucide lucide-chevrons-left w-4 h-4"
+                                            data-lucide="chevrons-left">
+                                            <polyline points="11 17 6 12 11 7"></polyline>
+                                            <polyline points="18 17 13 12 18 7"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevron-left" class="lucide lucide-chevron-left w-4 h-4"
+                                            data-lucide="chevron-left">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">1</a> </li>
+                                <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">3</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevron-right" class="lucide lucide-chevron-right w-4 h-4"
+                                            data-lucide="chevron-right">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevrons-right" class="lucide lucide-chevrons-right w-4 h-4"
+                                            data-lucide="chevrons-right">
+                                            <polyline points="13 17 18 12 13 7"></polyline>
+                                            <polyline points="6 17 11 12 6 7"></polyline>
+                                        </svg> </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <select class="w-20 form-select box mt-3 sm:mt-0">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>35</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

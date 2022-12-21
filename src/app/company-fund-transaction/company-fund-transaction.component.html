@@ -1,4 +1,4 @@
-<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
     <strong>Success!</strong> saved successfully.
 </div>
 <div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
@@ -91,6 +91,188 @@
             </div>
             <div *ngIf="companyFundTransactions.length === 0">
                 No Records
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Fund Transaction Details
+    </h2>
+
+</div>
+
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isSuccess!=1">
+    <div class="preview">
+        <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                icon-name="alert-triangle" data-lucide="alert-triangle"
+                class="lucide lucide-alert-triangle w-6 h-6 mr-2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg> <strong>Success!</strong>&nbsp;&nbsp; saved successfully.
+            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
+                    data-lucide="x" class="w-4 h-4"></i> </button>
+        </div>
+    </div>
+</div>
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isFail!=1">
+    <div class="preview">
+        <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                icon-name="alert-octagon" data-lucide="alert-octagon" class="lucide lucide-alert-octagon w-6 h-6 mr-2">
+                <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg><strong> Info! </strong>&nbsp;&nbsp; {{statusMessage}}
+            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
+                    data-lucide="x" class="w-4 h-4"></i> </button>
+        </div>
+    </div>
+</div>
+<div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
+
+    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+
+        <!--<div class="font-medium text-base">Profile Settings</div>-->
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+            <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+                <div class="intro-y col-span-12 sm:col-span-6" *ngIf="(currentLoginUser.role==='Super Admin')">
+                    <label for="input-wizard-1" class="form-label">Company Name
+                    </label>
+                    <select class="form-select" id="companyId" name="companyId" formControlName="companyId"
+                        [ngClass]="(submitted && formControls.companyId.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+
+                        <option value="">Choose a Company Name</option>
+                        <option *ngFor="let comp of company" [ngValue]="comp.companyId">{{ comp.companyName }}
+                        </option>
+                    </select>
+                    <div *ngIf="(currentLoginUser.role==='Super Admin' && submitted && formControls.companyId.errors && formControls.companyId.errors.required)"
+                        class="text-danger mt-2">Company Name is required</div>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-1" class="form-label">Mode of Payment
+                    </label>
+                    <select class="form-select" id="paymentTypeId" name="paymentTypeId" formControlName="paymentTypeId"
+                        [ngClass]="(submitted && formControls.paymentTypeId.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+
+                        <option value="">Choose a Mode of Payment</option>
+                        <option *ngFor="let payment of paymentType" [ngValue]="payment.paymentTypeId">{{
+                            payment.paymentTypeName }}</option>
+                    </select>
+                    <div *ngIf="submitted && formControls.paymentTypeId.errors && formControls.paymentTypeId.errors.required"
+                        class="text-danger mt-2">Mode of Payment is required</div>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-2" class="form-label">Add Money
+                    </label>
+                    <input type="text" class="form-control" id="amount" formControlName="amount" name="amount"
+                        placeholder="Amount" (keypress)="numberOnly($event)"
+                        [ngClass]="(submitted && formControls.amount.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+                    <div *ngIf="submitted && formControls.amount.errors && formControls.amount.errors.required"
+                        class="text-danger mt-2">Amount is required</div>
+                </div>
+
+                <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
+                    <button type="submit" class="btn btn-primary w-34">Add Money</button>
+                    <button type="reset" class="btn btn-secondary w-24 ml-2" (click)="reset()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 lg:col-span-12">
+        <div class="intro-y box mt-5">
+
+            <div class="p-5" id="striped-rows-table">
+                <div class="preview">
+                    <div class="overflow-x-auto">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+
+
+                                    <th class="whitespace-nowrap" *ngIf="currentLoginUser.role==='Super Admin'">Company
+                                    </th>
+                                    <th class="whitespace-nowrap">Payment Type</th>
+                                    <th class="whitespace-nowrap">Amount</th>
+                                    <th class="whitespace-nowrap">Added By</th>
+                                    <th class="whitespace-nowrap">Added Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let companyFund of companyFundTransactions">
+                                    <td *ngIf="currentLoginUser.role==='Super Admin'">{{companyFund.companyName}}</td>
+                                    <td>{{companyFund.modeOfPayment}}</td>
+                                    <td>{{companyFund.amount|currency:"INR":"symbol"}}</td>
+                                    <td>{{companyFund.addedBy}}</td>
+                                    <td>{{ companyFund.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
+                        <nav class="w-full sm:w-auto sm:mr-auto">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevrons-left" class="lucide lucide-chevrons-left w-4 h-4"
+                                            data-lucide="chevrons-left">
+                                            <polyline points="11 17 6 12 11 7"></polyline>
+                                            <polyline points="18 17 13 12 18 7"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevron-left" class="lucide lucide-chevron-left w-4 h-4"
+                                            data-lucide="chevron-left">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">1</a> </li>
+                                <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">3</a> </li>
+                                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevron-right" class="lucide lucide-chevron-right w-4 h-4"
+                                            data-lucide="chevron-right">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg> </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            icon-name="chevrons-right" class="lucide lucide-chevrons-right w-4 h-4"
+                                            data-lucide="chevrons-right">
+                                            <polyline points="13 17 18 12 13 7"></polyline>
+                                            <polyline points="6 17 11 12 6 7"></polyline>
+                                        </svg> </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <select class="w-20 form-select box mt-3 sm:mt-0">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>35</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

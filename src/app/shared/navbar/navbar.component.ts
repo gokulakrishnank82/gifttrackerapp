@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from '../../services/login.service';
 import { LogInIser } from '../../models/loginuser';
 
@@ -7,26 +8,46 @@ import { LogInIser } from '../../models/loginuser';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  providers: [NgbDropdownConfig]
+  providers: []
 })
 export class NavbarComponent implements OnInit {
+
   public iconOnlyToggled = false;
   public sidebarToggled = false;
   username: string;
   designation: string;
   currentLoginUser: LogInIser;
-
+  isSuperAdmin: boolean = false;
+  isAdmin: boolean = false;
+  isNormalUser: boolean = false;
   constructor(
-    config: NgbDropdownConfig, 
+    // config: NgbDropdownConfig,
+    private router: Router,
     public authenticationService: LoginService) {
-    config.placement = 'bottom-right';
+    // config.placement = 'bottom-right';
   }
 
   ngOnInit() {
     this.currentLoginUser = this.authenticationService.currentUserValue;
+    console.log('**********', this.currentLoginUser);
     if (this.currentLoginUser != null) {
       this.username = this.currentLoginUser.employeeName;
       this.designation = this.currentLoginUser.designation;
+      switch (this.currentLoginUser.role) {
+        case 'Super Admin': {
+          this.isSuperAdmin = true;
+          break;
+        }
+        case 'Admin': {
+          this.isAdmin = true;
+          break;
+        }
+        default: {
+          this.isNormalUser = true;
+          break;
+        }
+
+      }
     }
   }
 
@@ -59,5 +80,9 @@ export class NavbarComponent implements OnInit {
   // toggleRightSidebar() {
   //   document.querySelector('#right-sidebar').classList.toggle('open');
   // }
-
+  onRouterNav(val) {
+    // const url = `${[val]}`;
+    console.log(val);
+    this.router.navigate(['/giftcatalog']);
+  }
 }

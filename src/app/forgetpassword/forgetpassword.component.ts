@@ -58,6 +58,7 @@ export class ForgetpasswordComponent implements OnInit {
         } else {
           this.isFail = true;
         }
+        this.loading = false;
         this.statusMessage = data.statusDescription
         setTimeout(function () {
           this.isSuccess = false;

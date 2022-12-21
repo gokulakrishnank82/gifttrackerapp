@@ -1,4 +1,4 @@
-<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
+<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
     <strong>Success!</strong> saved successfully.
 </div>
 <div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
@@ -100,5 +100,95 @@
                 </form>
             </div>
         </div>
+    </div>
+</div>-->
+
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Employer Fund Distribution
+    </h2>
+</div>
+
+<div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
+
+    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+        <div class="font-medium text-lg">Employee Search</div>
+        <div class="font-medium text-base">Total Available Funds : {{totalAvailableFund|currency:"INR":"symbol"}}</div>
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+            <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+                <div class=" intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-4" class="form-label">Select Perk Type
+                    </label>
+                    <select class="form-select" id="perkType" name="perkType" formControlName="perkType"
+                        (change)='perkTypeChange($event)'
+                        [ngClass]="(submitted && formControls.perkType.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+
+                        <option value="1">Individual</option>
+                        <option value="2">Multiple</option>
+                    </select>
+                    <div *ngIf="(submitted && formControls.perkType.errors && formControls.perkType.errors.required)"
+                        class="text-danger mt-2">Perk Type is required</div>
+                </div>
+                <ng-container *ngIf="perkValue =='1'">
+                    <div class="intro-y col-span-12 sm:col-span-6">
+                        <label for="input-wizard-1" class="form-label">Employee ID</label>
+                        <select class="form-select" type="text" id="employeeId" formControlName="employeeId"
+                            name="employeeId" placeholder="Employee ID" (keypress)="numberOnly($event)"
+                            list="employeeIds" (change)="bindEmployeeDetails($event,'employeeId')">
+                            <option *ngFor=" let employee of employeeDetails" [ngValue]="employee.employeeId">{{
+                                employee.employeeId }}</option>
+                        </select>
+                    </div>
+                    <div class="intro-y col-span-12 sm:col-span-6">
+                        <label for="input-wizard-1" class="form-label">Employee Name</label>
+                        <select class="form-select" type="text" cid="employeeName" formControlName="employeeName"
+                            name="employeeName" placeholder="Employee Name" (keyup)="getEmployeeByType($event)"
+                            list="employeeNames" (change)="bindEmployeeDetails($event,'name')">
+                            <option *ngFor=" let employee of employeeDetails" [ngValue]="employee.employeeName">{{
+                                employee.employeeName }}</option>
+                        </select>
+                    </div>
+                    <div class="intro-y col-span-12 sm:col-span-6">
+                        <label for="input-wizard-1" class="form-label">Email</label>
+                        <select class="form-select" type="text" id="email" formControlName="email" name="email"
+                            placeholder="Email" (keyup)="getEmployeeByType($event)" list="employeeEmails"
+                            (change)="bindEmployeeDetails($event,'email')">
+                            <option *ngFor=" let employee of employeeDetails" [ngValue]="employee.email">{{
+                                employee.email }}</option>
+                        </select>
+                    </div>
+                    <div class="intro-y col-span-12 sm:col-span-6">
+                        <label for="input-wizard-1" class="form-label">Employee Number</label>
+                        <select class="form-select" type="text" id="employeeNumber" formControlName="employeeNumber"
+                            name="employeeNumber" placeholder="Employee Number" (keyup)="getEmployeeByType($event)"
+                            list="employeeNumbers" (change)="bindEmployeeDetails($event,'number')">
+                            <option *ngFor=" let employee of employeeDetails" [ngValue]="employee.employeeNumber">{{
+                                employee.employeeNumber }}</option>
+                        </select>
+                    </div>
+                </ng-container>
+                <div class=" intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-4" class="form-label">Comments
+                    </label>
+                    <input type="text" class="form-control" id="comment" formControlName="comment" name="comment"
+                        placeholder="Comments">
+
+                </div>
+                <div class=" intro-y col-span-12 sm:col-span-6">
+                    <label for="input-wizard-4" class="form-label">Perk Value
+                    </label>
+                    <input type="text" class="form-control" id="perkValue" formControlName="perkValue" name="perkValue"
+                        placeholder="Perk Value" (keypress)="numberOnly($event)"
+                        [ngClass]="(submitted && formControls.perkValue.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+                    <div *ngIf="submitted && formControls.perkValue.errors && formControls.perkValue.errors.required"
+                        class="text-danger mt-2">Perk Value is required</div>
+                </div>
+
+                <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
+                    <button type="submit" class="btn btn-primary w-24">Add</button>
+
+                </div>
+            </div>
+        </form>
     </div>
 </div>

@@ -1,19 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ChartsModule, ThemeService } from 'ng2-charts';
+// import { ChartsModule, ThemeService } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { FooterComponent } from './shared/footer/footer.component';
+// import { SidebarComponent } from './shared/sidebar/sidebar.component';
+// import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
+// import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
 import { BusinesstypeComponent } from './businesstype/businesstype.component';
 import { CompanyComponent } from './company/company.component';
@@ -38,10 +40,10 @@ import { CouponComponent } from './coupon/coupon.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    SidebarComponent,
-    FooterComponent,
+    // SidebarComponent,
+    // FooterComponent,
     DashboardComponent,
-    SpinnerComponent,
+    //  SpinnerComponent,
     ContentAnimateDirective,
     BusinesstypeComponent,
     CompanyComponent,
@@ -63,16 +65,18 @@ import { CouponComponent } from './coupon/coupon.component';
     CouponComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, RouterModule,
     AppRoutingModule,
-    NgbModule,
+    // NgbModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule
+    // ChartsModule
   ],
-  providers: [ThemeService],
+  providers: [
+    // ThemeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
