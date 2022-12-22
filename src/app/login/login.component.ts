@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: LoginService) {
-
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/dashboard']);
     }
@@ -47,10 +46,16 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      return;
+      // return;
     }
 
     this.loading = true;
+    // console.log(this.loginForm.value);
+    // const obj = { username: 'Normal user', password: 'Welcome123' };
+    // const obj = { username: 'Admin user', password: 'Welcome123' };
+    // const obj = { username: 'Super Admin user', password: 'Welcome123' };
+    // this.authenticationService.login(this.loginForm.value)
+
     this.authenticationService.login(this.loginForm.value)
       .pipe(first())
       .subscribe(
