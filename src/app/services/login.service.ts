@@ -22,25 +22,26 @@ export class LoginService {
   public get currentUserValue(): LogInIser {
     return this.currentUserSubject.value;
   }
- 
+
   login(login: LogInRequest) {
     return this.http.post<any>(`${environment.apiUrl}login`, login)
       .pipe(
         map(user => {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-             //user.authdata = window.btoa(user.username + ':' + user.password);
-       // if (user.errorDescription == null) {
+          //user.authdata = window.btoa(user.username + ':' + user.password);
+          // if (user.errorDescription == null) {
           //localStorage.setItem('currentUser', JSON.stringify(user));
+          // console.log(JSON.stringify(user));
           this.currentUserSubject.next(user);
-       // }
-        return user;
-      }));
+          // }
+          return user;
+        }));
   }
 
 
   logout() {
     // remove user from local storage to log user out
-   // localStorage.removeItem('currentUser');
+    // localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 
