@@ -67,12 +67,14 @@ export class ProductComponent implements OnInit {
           this.statusMessage = ' Product Name: ' + product.productName + ' deleted successfully'
           this.isFail = true
           this.ShowMessage()
+          this.reset()
         }
         else {
           this.statusMessage = data.statusDescription
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editProduct(product: Product): void {
@@ -83,6 +85,7 @@ export class ProductComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
 
   onSubmit() {
@@ -137,6 +140,7 @@ export class ProductComponent implements OnInit {
 
   reset() {
     this.submitted = false;
+    this.isEdit = false;
     this.addForm.reset();
   }
 

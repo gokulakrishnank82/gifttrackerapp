@@ -49,8 +49,6 @@ export class AppComponent implements OnInit {
           document.querySelector('.content-wrapper').classList.remove('auth', 'auth-img-bg');
           document.querySelector('.content-wrapper').classList.remove('p-0');*/
         }
-        console.log(this.showSidebar, '---', this.showNavbar, '####', this.showFooter, '---');
-
       }
     });
 
@@ -67,8 +65,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // Scroll to top after route change
-    this.router.events.subscribe((evt) => {
-      // console.log('----dfdfdfdf----------');
+    this.router.events.subscribe((evt) => {   
       if (!(evt instanceof NavigationEnd)) {
         return;
       }

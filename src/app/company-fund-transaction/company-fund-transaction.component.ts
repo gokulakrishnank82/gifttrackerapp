@@ -9,11 +9,16 @@ import { LoginService } from '../services/login.service';
 import { LogInIser } from '../models/loginuser';
 import { Company } from '../models/company';
 import { CompanyService } from '../services/company.service';
+import { WindowRefService } from '../services/window-ref.service';
+import { MerchantOrder } from '../models/merchantorder';
+import { PaymentRequest } from '../models/paymentrequest';
+import { CompleteOrderRequest } from '../models/completeorderrequest';
 
 @Component({
   selector: 'app-company-fund-transaction',
   templateUrl: './company-fund-transaction.component.html',
-  styleUrls: ['./company-fund-transaction.component.scss']
+  styleUrls: ['./company-fund-transaction.component.scss'],
+  providers: [WindowRefService]
 })
 export class CompanyFundTransactionComponent implements OnInit {
 
@@ -26,6 +31,9 @@ export class CompanyFundTransactionComponent implements OnInit {
   isSuccess: Boolean = false;
   isFail: Boolean = false;
   submitted = false;
+  merchantOrder: MerchantOrder;
+  paymentRequest: PaymentRequest;
+  completeOrderRequest: CompleteOrderRequest;
 
   get formControls() { return this.addForm.controls; }
 
@@ -35,6 +43,7 @@ export class CompanyFundTransactionComponent implements OnInit {
     public apiService: CompanyFundTransactionService,
     public authenticationService: LoginService,
     public companyService: CompanyService,
+    private winRef: WindowRefService
   ) { }
 
   ngOnInit() {
@@ -95,12 +104,16 @@ export class CompanyFundTransactionComponent implements OnInit {
       return;
     }
     this.submitted = false;
-    this.addForm.value["companyFundTransactionId"] = 0;
-    this.addForm.value["createdBy"] = this.currentLoginUser.employeeId;
-    this.addForm.value["createdTime"] = new Date();
-    this.apiService.createCompanyFundTransaction(this.addForm.value)
+    // this.addForm.value["companyFundTransactionId"] = 0;
+    // this.addForm.value["createdBy"] = this.currentLoginUser.employeeId;
+    // this.addForm.value["createdTime"] = new Date();
+    this.apiService.ProcessPaymentRequest({
+      amount: parseInt(this.addForm.value["amount"]),
+      companyId: this.currentLoginUser.companyId,
+      paymentTypeId: this.addForm.value["paymentTypeId"]
+    })
       .subscribe(data => {
-        this.ProcesssResponse(data)
+        this.payWithRazor(data);
       });
   }
   ProcesssResponse(data) {
@@ -133,6 +146,52 @@ export class CompanyFundTransactionComponent implements OnInit {
   reset() {
     this.submitted = false;
     this.addForm.reset();
+  }
+  payWithRazor(merchantOrder: MerchantOrder) {
+    const options: any = {
+      key: merchantOrder.razorpayKey,
+      amount: merchantOrder.amount,
+      currency: merchantOrder.currency,
+      name: merchantOrder.name,
+      description: merchantOrder.description,
+      image: './assets/logo.png',
+      order_id: merchantOrder.orderId,
+      modal: {
+        // We should prevent closing of the form when esc key is pressed.
+        escape: false,
+      },
+      notes: {
+        // include notes if any
+      },
+      theme: {
+        color: '#0c238a'
+      }
+    };
+    options.handler = ((response, error) => {
+      options.response = response;
+      console.log(response);
+      console.log(options);
+
+
+      this.apiService.getPaymentStatus({
+        companyId: this.currentLoginUser.companyId,
+        createdBy: this.currentLoginUser.employeeId,
+        createdTime: new Date(),
+        orderId: response.razorpay_order_id,
+        paymentId: response.razorpay_payment_id,
+        paymentTypeId: parseInt(this.addForm.value["paymentTypeId"])
+      })
+        .subscribe(data => {
+          console.log(data);
+        });
+      // call your backend api to verify payment signature & capture transaction
+    });
+    options.modal.ondismiss = (() => {
+      // handle the case when user closes the form while transaction is in progress
+      console.log('Transaction cancelled.');
+    });
+    const rzp = new this.winRef.nativeWindow.Razorpay(options);
+    rzp.open();
   }
 
 }

@@ -75,6 +75,7 @@ export class PaymenttypeComponent implements OnInit {
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editPaymentType(paymentType: PaymentType): void {
@@ -85,6 +86,7 @@ export class PaymenttypeComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
   
 
@@ -141,6 +143,7 @@ export class PaymenttypeComponent implements OnInit {
 
   reset() {
     this.submitted = false;
+    this.isEdit = false;
     this.addForm.reset();
   }
 

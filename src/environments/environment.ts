@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://13.126.92.15/gift-tracker-api/api/'
+  //apiUrl: 'http://13.126.92.15/gift-tracker-api/api/',
+  apiUrl:'http://localhost:48447/api/',
+  imagUrl:'http://localhost:48447/'
 };
 
 /*

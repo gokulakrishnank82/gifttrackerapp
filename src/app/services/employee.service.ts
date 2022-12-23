@@ -29,6 +29,10 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(`${environment.apiUrl}employee/` + id).pipe(
       catchError(this.errorHandler))
   }
+  getEmployeeWallet(employeeid: number): Observable<number> {
+    return this.httpClient.get<number>(`${environment.apiUrl}employee/employeewallet/` + employeeid).pipe(
+      catchError(this.errorHandler))
+  }
   createEmployee(employee: Employee): Observable<BaseResponse> {
     return this.httpClient.post<BaseResponse>(`${environment.apiUrl}employee/`, employee).pipe(
       catchError(this.errorHandler))

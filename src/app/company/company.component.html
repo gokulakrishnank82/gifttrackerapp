@@ -1,139 +1,3 @@
-<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
-  <strong>Success!</strong> saved successfully.
-</div>
-<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
-  <strong>Info!</strong> {{statusMessage}}
-</div>
-
-<div class="page-header">
-  <h3 class="page-title">
-    Company Details
-  </h3>
-</div>
-<div class="row">
-  <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-          <div class="form-group row">
-            <label for="companyName" class="col-sm-2.5 col-form-label">Company Name</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="companyName" formControlName="companyName" name="companyName"
-                placeholder="Company Name" [ngClass]="{ 'is-invalid': submitted && formControls.companyName.errors }">
-              <div *ngIf="submitted && formControls.companyName.errors" class="invalid-feedback">
-                <div *ngIf="formControls.companyName.errors.required">Company Name is required</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="address" class="col-sm-2.5 col-form-label">Address</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="address" formControlName="address" name="address"
-                placeholder="Address">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="email" class="col-sm-2.5 col-form-label">Email</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="email" formControlName="email" name="email"
-                placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
-              <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
-                <div *ngIf="formControls.email.errors.required">Email is required</div>
-                <div *ngIf="formControls.email.errors && formControls.email.errors.pattern">
-                  Email is invalid
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="contactNumber" class="col-sm-2.5 col-form-label">Contact Number</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber"
-                name="contactNumber" placeholder="Contact Number" (keypress)="numberOnly($event)" minlength="10"
-                maxlength="10" [ngClass]="{ 'is-invalid': submitted && formControls.contactNumber.errors }">
-              <div *ngIf="submitted && formControls.contactNumber.errors" class="invalid-feedback">
-                <div *ngIf="formControls.contactNumber.errors.required">Contact Number is required</div>
-                <div *ngIf="formControls.contactNumber.errors.minlength">Contact Number must have 10 characters</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="website" class="col-sm-2.5 col-form-label">Website</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="website" formControlName="website" name="website"
-                placeholder="Website">
-            </div>
-
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Type of Business</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="businessTypeId" name="businessTypeId" formControlName="businessTypeId"
-                [ngClass]="{ 'is-invalid': submitted && formControls.businessTypeId.errors }">
-                <option value="">Choose a Business Type</option>
-                <option *ngFor="let businesss of businessTypes" [ngValue]="businesss.businessTypeId">{{
-                  businesss.businessTypeName }}</option>
-              </select>
-              <div *ngIf="submitted && formControls.businessTypeId.errors" class="invalid-feedback">
-                <div *ngIf="formControls.businessTypeId.errors.required">Business Type is required</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="active" class="col-sm-2.5 col-form-label">Active</label>
-            <div class="col-sm-4">
-              <input type="checkbox" class="form-control" id="active" formControlName="active" style="width: 6%;"
-                name="active" checked="active">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
-          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
-    <div class="card">
-      <div class="card-body" *ngIf="companyDetails.length > 0">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Email</th>
-              <th>Contact Number</th>
-              <th>Website</th>
-              <th>Type of Business</th>
-              <th>active</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let company of companyDetails">
-              <td>{{company.companyName}}</td>
-              <td>{{company.email}}</td>
-              <td>{{company.contactNumber}}</td>
-              <td>{{company.website}}</td>
-              <td>{{company.businessTypeName}}</td>
-              <td>{{company.active}}</td>
-              <td>
-                <button class="btn btn-outline-success" (click)="editCompany(company)"> Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteCompany(company)" style="margin-left: 20px;">
-                  Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="companyDetails.length === 0">
-        No Records
-      </div>
-    </div>
-  </div>
-</div>-->
-
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
   <h2 class="text-lg font-medium mr-auto">
     Company Details
@@ -262,18 +126,13 @@
 
       <div class="p-5" id="striped-rows-table">
         <div class="preview">
-          <div class="overflow-x-auto">
+          <div class="overflow-x-auto"  *ngIf="companyDetails.length > 0">
             <table class="table table-striped">
               <thead>
                 <tr>
-
-
-
                   <th class="whitespace-nowrap">Company</th>
                   <th class="whitespace-nowrap">Email</th>
                   <th class="whitespace-nowrap">Contact Number</th>
-                  <th class="whitespace-nowrap">Website</th>
-                  <th class="whitespace-nowrap">Type of Business</th>
                   <th class="whitespace-nowrap">Status</th>
                   <th class="whitespace-nowrap">Action</th>
                 </tr>
@@ -283,10 +142,7 @@
                   <td>{{company.companyName}}</td>
                   <td>{{company.email}}</td>
                   <td>{{company.contactNumber}}</td>
-                  <td>{{company.website}}</td>
-                  <td>{{company.businessTypeName}}</td>
                   <td>
-
                     <div class="flex items-center text-danger" *ngIf="!(company.active)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -298,8 +154,6 @@
                     </div>
                     <div class="tabulator-col-resize-handle"></div>
                     <div class="tabulator-col-resize-handle prev"></div>
-
-
                     <div class="flex items-center text-success" *ngIf="(company.active)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -311,7 +165,6 @@
                     </div>
                   </td>
                   <td>
-
                     <div class="flex  items-center">
                       <a class="edit flex items-center mr-3" href="javascript:;" (click)="editCompany(company)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -338,6 +191,9 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div *ngIf="companyDetails.length === 0">
+            No Records
           </div>
           <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
             <nav class="w-full sm:w-auto sm:mr-auto">

@@ -3,6 +3,7 @@ export interface Catalog {
     catalogName: string;
     catalogTypeId: number;
     catalogType: string;
+    imageFileName:string;
     fileDetails: any;
     createdBy: number;
     createdTime: Date;

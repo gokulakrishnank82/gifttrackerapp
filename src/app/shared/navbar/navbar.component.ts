@@ -21,15 +21,12 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isNormalUser: boolean = false;
   constructor(
-    // config: NgbDropdownConfig,
     private router: Router,
     public authenticationService: LoginService) {
-    // config.placement = 'bottom-right';
   }
 
   ngOnInit() {
     this.currentLoginUser = this.authenticationService.currentUserValue;
-    console.log('**********', this.currentLoginUser);
     if (this.currentLoginUser != null) {
       this.username = this.currentLoginUser.employeeName;
       this.designation = this.currentLoginUser.designation;
@@ -74,15 +71,5 @@ export class NavbarComponent implements OnInit {
         body.classList.remove('sidebar-hidden');
       }
     }
-  }
-
-  // toggle right sidebar
-  // toggleRightSidebar() {
-  //   document.querySelector('#right-sidebar').classList.toggle('open');
-  // }
-  onRouterNav(val) {
-    // const url = `${[val]}`;
-    console.log(val);
-    this.router.navigate(['/giftcatalog']);
   }
 }

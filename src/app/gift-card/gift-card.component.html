@@ -1,121 +1,49 @@
-<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
-    <strong>Success!</strong> saved successfully.
-</div>
-<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
-    <strong>Info!</strong> {{statusMessage}}
-</div>
-
-<div class="page-header">
-    <h3 class="page-title">
-        Gift Card Details
-    </h3>
-</div>
-
-<div class="row" *ngIf="isTileShow">
-    <div class="col-md-4 stretch-card grid-margin" *ngFor="let catalog of catalogs">
-        <div class="card bg-gradient-success card-img-holder text-white">
-            <div class="card-body">
-                <a [routerLink]="[]" (click)="showCouponDetail(catalog.catalogId,catalog.catalogName)">
-                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">{{catalog.catalogName}}
-                        <i class="mdi mdi-diamond mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">95,5741</h2>
-                    <h6 class="card-text">Increased by 5%</h6>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row" *ngIf="!isTileShow">
-    <div class="col-md-4 stretch-card grid-margin">
-        <div class="card bg-gradient-success card-img-holder text-white">
-            <div class="card-body">
-                <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">{{selectedCatalogName}}
-                    <i class="mdi mdi-diamond mdi-24px float-right"></i>
-                </h4>
-                <h2 class="mb-5">95,5741</h2>
-                <h6 class="card-text">Increased by 5%</h6>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-8 stretch-card grid-margin">
-        <div class="card">
-            <div class="card-body">
-                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group row">
-                        <label for="cardValue" class="col-sm-2.5 col-form-label">Enter Card Value</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="cardValue" formControlName="cardValue"
-                                name="cardValue" placeholder="Enter card Value" (keypress)="numberOnly($event,'card')"
-                                [ngClass]="{ 'is-invalid': submitted && formControls.cardValue.errors }">
-                            <div *ngIf="submitted && formControls.cardValue.errors" class="invalid-feedback">
-                                <div *ngIf="formControls.cardValue.errors.required">Card Value is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="quantity" class="col-sm-2.5 col-form-label">Quantity</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="quantity" formControlName="quantity"
-                                name="quantity" placeholder="Quantity" (keypress)="numberOnly($event,'card')" (change)="calc()"
-                                [ngClass]="{ 'is-invalid': submitted && formControls.quantity.errors }">
-                            <div *ngIf="submitted && formControls.quantity.errors" class="invalid-feedback">
-                                <div *ngIf="formControls.quantity.errors.required">Quantity is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="total" class="col-sm-2.5 col-form-label">Total</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="total" formControlName="total" name="total"
-                                placeholder="Total" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="deliveryMode" class="col-sm-2.5 col-form-label">Delivery Mode</label>
-                        <div class="col-sm-4">
-                            <label style="padding: 1 1 1 1px;">
-                                <input type="radio" value="SMS" formControlName="deliveryMode">
-                                <span>SMS</span>
-                            </label>
-                            <label style="padding: 1 1 1 1px;">
-                                <input type="radio" value="Email" formControlName="deliveryMode">
-                                <span>Email</span>
-                            </label>
-                            <label style="padding: 1 1 1 1px;">
-                                <input type="radio" value="Both" formControlName="deliveryMode">
-                                <span>Both</span>
-                            </label>
-                             <input type="text" class="form-control" id="deliveryMode" formControlName="deliveryMode"
-                                name="deliveryMode" placeholder="Delivery Mode"> -->
-<!-- [ngClass]="{ 'is-invalid': submitted && formControls.deliveryMode.errors }"> -->
-<!-- <div *ngIf="submitted && formControls.deliveryMode.errors" class="invalid-feedback">
-                                <div *ngIf="formControls.deliveryMode.errors.required">Business Type Name is
-                                    required</div>
-                            </div> -->
-<!-- </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
-                    <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>-->
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">
         Gift Card Details
     </h2>
+</div>
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <h2 class="text-lg font-medium mr-auto">
+        Wallet Amount {{walletBalance|currency:"INR":"symbol"}}
+    </h2>
+</div>
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isSuccess!=1">
+    <div class="preview">
+      <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="alert-triangle"
+          data-lucide="alert-triangle" class="lucide lucide-alert-triangle w-6 h-6 mr-2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg> <strong>Success!</strong>&nbsp;&nbsp; saved successfully.
+        <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
+            class="w-4 h-4"></i> </button>
+      </div>
+    </div>
+  </div>
+<div id="icon-dismiss-alert" class="p-5" [hidden]="isFail!=1">
+    <div class="preview">
+        <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                icon-name="alert-octagon" data-lucide="alert-octagon" class="lucide lucide-alert-octagon w-6 h-6 mr-2">
+                <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg><strong> Info! </strong>&nbsp;&nbsp; {{statusMessage}}
+            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
+                    data-lucide="x" class="w-4 h-4"></i> </button>
+        </div>
+    </div>
 </div>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <ng-container *ngIf="isTileShow">
         <ng-container *ngFor="let catalog of catalogs">
             <a href="javascript:;"
                 class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary"
-                (click)="showCouponDetail(catalog.catalogId,catalog.catalogName)">
+                (click)="selectCatalog(catalog)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     icon-name="gift" data-lucide="gift" class="lucide lucide-gift block w-12 h-12 text-primary mx-auto">
@@ -126,17 +54,15 @@
                     <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
                 </svg>
                 <div class="font-medium text-center text-base mt-3">{{catalog.catalogName}}</div>
-                <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
+                <!-- <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
                 </div>
                 <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">Increased by 5%
-                </div>
+                </div> -->
 
             </a>
         </ng-container>
     </ng-container>
     <ng-container *ngIf="!isTileShow">
-
-
         <a href="javascript:;"
             class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary customGiftCard">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -149,23 +75,15 @@
                 <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
             </svg>
             <div class="font-medium text-center text-base mt-3">{{selectedCatalogName}}</div>
-            <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
+            <!-- <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
             </div>
             <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">Increased by 5%
-            </div>
-
+            </div> -->
         </a>
 
         <div class="intro-y col-span-12 lg:col-span-6">
             <!-- BEGIN: Vertical Form -->
-            <div class="intro-y box">
-                <!--<div
-                    class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">
-                        Form
-                    </h2>
-
-                </div>-->
+            <div class="intro-y box">            
                 <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
                     <div id="vertical-form" class="p-5">
                         <div class="preview">
@@ -173,7 +91,8 @@
                                 <label for="cardValue" class="form-label">Enter Card Value</label>
                                 <input type="text" class="form-control" id="cardValue" formControlName="cardValue"
                                     name="cardValue" placeholder="Enter card Value"
-                                    (keypress)="numberOnly($event,'card')"
+                                    (keypress)="numberOnly($event)"
+                                    (keyup)="priceCalculation()"
                                     [ngClass]="(submitted && formControls.cardValue.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                                 <div *ngIf="submitted && formControls.cardValue.errors && formControls.cardValue.errors.required"
                                     class="text-danger mt-2">Card Value is required</div>
@@ -181,8 +100,8 @@
                             <div class="mt-3">
                                 <label for="quantity" class="form-label">Quantity</label>
                                 <input type="text" class="form-control" id="quantity" formControlName="quantity"
-                                    name="quantity" placeholder="Quantity" (keypress)="numberOnly($event,'card')"
-                                    (change)="calc()"
+                                    name="quantity" placeholder="Quantity" (keypress)="numberOnly($event)"
+                                    (keyup)="priceCalculation()"
                                     [ngClass]="(submitted && formControls.quantity.errors)?'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                                 <div *ngIf="submitted && formControls.quantity.errors && formControls.quantity.errors.required"
                                     class="text-danger mt-2">Quantity is required</div>

@@ -1,75 +1,3 @@
-<!--<div [hidden]="isSuccess!=1" class="alert alert-success box-msg" role="alert">
-  <strong>Success!</strong> saved successfully.
-</div>
-<div [hidden]="isFail!=1" class="alert alert alert-danger box-msg" role="alert">
-  <strong>Info!</strong> {{statusMessage}}
-</div>
-<div class="page-header">
-  <h3 class="page-title">
-    Role Details
-  </h3>
-</div>
-<div class="row">
-  <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-          <div class="form-group row">
-            <label for="roleName" class="col-sm-2.5 col-form-label">Role Name</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="roleName" formControlName="roleName" name="roleName"
-                placeholder="Role Name" [ngClass]="{ 'is-invalid': submitted && formControls.roleName.errors }">
-              <div *ngIf="submitted && formControls.roleName.errors" class="invalid-feedback">
-                <div *ngIf="formControls.roleName.errors.required">Role Name is required</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="active" class="col-sm-2.5 col-form-label">Active</label>
-            <div class="col-sm-4">
-              <input type="checkbox" class="form-control" id="active" formControlName="active" style="width: 6%;"
-                name="active" checked="active">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-gradient-primary mr-2"> Submit</button>
-          <button type="reset" class="btn btn-light" (click)="reset()">Cancel</button>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
-    <div class="card">
-      <div class="card-body" *ngIf="roleDetails.length > 0">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Business Type</th>
-              <th>Active</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let role of roleDetails">
-              <td>{{role.roleName}}</td>
-              <td>{{role.active}}</td>
-              <td>
-                <button class="btn btn-outline-success" (click)="editRole(role)"> Edit</button>
-                <button class="btn btn-outline-danger" (click)="deleteRole(role)" style="margin-left: 20px;">
-                  Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="roleDetails.length === 0">
-        No Records
-      </div>
-    </div>
-  </div>
-</div>-->
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
   <h2 class="text-lg font-medium mr-auto">
     Role Details
@@ -109,7 +37,6 @@
 <div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
 
   <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
-    <!--<div class="font-medium text-base">Profile Settings</div>-->
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
       <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
         <div class="intro-y col-span-12 sm:col-span-6">
@@ -143,11 +70,9 @@
   </div>
 </div>
 
-
 <div class="grid grid-cols-12 gap-6 mt-5">
   <div class="intro-y col-span-12 lg:col-span-12">
     <div class="intro-y box mt-5">
-
       <div class="p-5" id="striped-rows-table">
         <div class="preview">
           <div class="overflow-x-auto">
@@ -163,7 +88,6 @@
                 <tr *ngFor="let role of roleDetails">
                   <td>{{role.roleName}}</td>
                   <td>
-
                     <div class="flex items-center text-danger" *ngIf="!(role.active)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -175,8 +99,6 @@
                     </div>
                     <div class="tabulator-col-resize-handle"></div>
                     <div class="tabulator-col-resize-handle prev"></div>
-
-
                     <div class="flex items-center text-success" *ngIf="(role.active)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -188,7 +110,6 @@
                     </div>
                   </td>
                   <td>
-
                     <div class="flex  items-center">
                       <a class="edit flex items-center mr-3" href="javascript:;" (click)="editRole(role)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

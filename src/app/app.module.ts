@@ -35,6 +35,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { CatalogTypeComponent } from './catalog-type/catalog-type.component';
 import { GiftCardComponent } from './gift-card/gift-card.component';
 import { CouponComponent } from './coupon/coupon.component';
+import { EmployeeBulkloadComponent } from './employee-bulkload/employee-bulkload.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { CouponComponent } from './coupon/coupon.component';
     CatalogComponent,
     CatalogTypeComponent,
     GiftCardComponent,
-    CouponComponent
+    CouponComponent,
+    EmployeeBulkloadComponent
   ],
   imports: [
     BrowserModule, RouterModule,

@@ -7,6 +7,7 @@ import { Catalog } from '../models/catalog';
 import { CatalogType } from '../models/catalog-type';
 import { LoginService } from '../services/login.service';
 import { LogInIser } from '../models/loginuser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-catalog',
@@ -24,6 +25,8 @@ export class CatalogComponent implements OnInit {
   isSuccess: Boolean = false;
   isFail: Boolean = false;
   submitted = false;
+  selectedFile: File = null;
+  imagUrl: string = '';
 
   get formControls() { return this.addForm.controls; }
 
@@ -39,6 +42,7 @@ export class CatalogComponent implements OnInit {
       this.router.navigate(['login']);
       return;
     }
+    this.imagUrl = `${environment.imagUrl}`;
     this.intialFormValue();
     this.getCatalogTypeDetails();
     this.getCatalogDetails();
@@ -52,7 +56,8 @@ export class CatalogComponent implements OnInit {
       createdBy: [''],
       createdTime: [''],
       modifiedBy: [''],
-      modifiedTime: ['']
+      modifiedTime: [''],
+      imageFileName: ['']
     });
   }
 
@@ -79,12 +84,14 @@ export class CatalogComponent implements OnInit {
           this.statusMessage = 'Catalog Name: ' + catalog.catalogName + ' deleted successfully'
           this.isFail = true
           this.ShowMessage()
+          this.reset()
         }
         else {
           this.statusMessage = data.statusDescription
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editCatalog(catalog: Catalog): void {
@@ -95,6 +102,7 @@ export class CatalogComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
 
   onSubmit() {
@@ -105,35 +113,25 @@ export class CatalogComponent implements OnInit {
       return;
     }
     this.submitted = false;
-
-   
-
-    this.addForm.value["createdBy"] = this.currentLoginUser.employeeId;
-    this.addForm.value["createdTime"] = new Date();
-
+    const formData = new FormData();
+    formData.append('catalogName', this.addForm.value["catalogName"]);
+    formData.append('catalogTypeId', this.addForm.value["catalogTypeId"]);
+    formData.append('fileDetails', this.selectedFile);
+    formData.append('createdBy', this.currentLoginUser.employeeId.toString());
+    formData.append('modifiedBy', this.currentLoginUser.employeeId.toString());
     if (this.isEdit == false) {
-      this.addForm.value["catalogId"] = 0;
-      // const formData = new FormData();
-      // for (const key of Object.keys(this.addForm.value)) {
-      //   const value = this.addForm.value[key];
-      //   formData.append(key, value);
-      // }
-      this.apiService.createCatalog(this.addForm.value)
+      formData.append('catalogId', '0');
+      this.apiService.createCatalog(formData)
         .subscribe(data => {
           this.ProcesssResponse(data, '')
         });
     }
     else {
-      // const formData = new FormData();
-      // for (const key of Object.keys(this.addForm.value)) {
-      //   const value = this.addForm.value[key];
-      //   formData.append(key, value);
-      // }
-      this.apiService.updateCatalog(this.addForm.value)
-        .subscribe(
-          data => {
-            this.ProcesssResponse(data, 'Edit')
-          });
+      formData.append('catalogId', this.addForm.value["catalogId"]);
+      this.apiService.updateCatalog(formData)
+        .subscribe(data => {
+          this.ProcesssResponse(data, 'Edit')
+        });
     }
   }
 
@@ -148,6 +146,7 @@ export class CatalogComponent implements OnInit {
     } else {
       this.isFail = true;
     }
+    this.selectedFile = null;
     this.statusMessage = data.statusDescription
     this.ShowMessage();
   }
@@ -164,14 +163,8 @@ export class CatalogComponent implements OnInit {
     this.addForm.reset();
   }
 
-  onFileChanged(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      //this.labelImport.nativeElement.innerText = file.name;
-      this.addForm.patchValue({
-        fileDetails: file,
-      });
-    }
+  chooseFile(files: FileList) {
+    this.selectedFile = files[0];
   }
 
 }

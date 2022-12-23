@@ -90,12 +90,14 @@ export class CompanyComponent implements OnInit {
           this.statusMessage = 'Company Name: ' + company.companyName + ' deleted successfully'
           this.isFail = true
           this.ShowMessage()
+          this.reset()
         }
         else {
           this.statusMessage = data.statusDescription
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editCompany(Company: Company): void {
@@ -106,6 +108,7 @@ export class CompanyComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
 
   onSubmit() {
@@ -168,6 +171,7 @@ export class CompanyComponent implements OnInit {
   }
   reset() {
     this.submitted = false;
+    this.isEdit = false;
     this.addForm.reset();
   }
 

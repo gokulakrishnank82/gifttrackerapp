@@ -113,12 +113,14 @@ export class EmployeeComponent implements OnInit {
           this.statusMessage = 'Employee Name: ' + employee.employeeName + ' deleted successfully'
           this.isFail = true
           this.ShowMessage()
+          this.reset()
         }
         else {
           this.statusMessage = data.statusDescription
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editEmployee(employee: Employee): void {
@@ -129,6 +131,7 @@ export class EmployeeComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
 
   onSubmit() {
@@ -197,6 +200,7 @@ export class EmployeeComponent implements OnInit {
 
   reset() {
     this.submitted = false;
+    this.isEdit = false;
     this.addForm.reset();
   }
 

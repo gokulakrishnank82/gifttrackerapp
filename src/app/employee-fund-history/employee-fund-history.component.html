@@ -1,51 +1,7 @@
-<!--<div class="page-header">
-    <h3 class="page-title">
-        Employee Fund History
-    </h3>
-</div>
-<div class="page-header">
-    <h3 class="page-title">
-        Available Amount:
-        {{totalAmount|currency:"INR":"symbol"}}
-    </h3>
-</div>
-
-<div class="row">
-    <div class="col-md-12" style="overflow-y: auto;margin-top: 1rem;">
-        <div class="card">
-            <div class="card-body" *ngIf="employeeFundHistory.length > 0">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Perk Value</th>
-                            <th>Comment</th>
-                            <th>Added By</th>
-                            <th>Added Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let fundHistory of employeeFundHistory">
-                            <td>
-                                {{fundHistory.perkValue|currency:"INR":"symbol"}}
-                            </td>
-                            <td>{{fundHistory.comment}}</td>
-                            <td>{{fundHistory.addedBy}}</td>
-                            <td>{{fundHistory.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div *ngIf="employeeFundHistory.length === 0">
-                No Records
-            </div>
-        </div>
-    </div>
-</div>-->
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">
         Employee Fund History
     </h2>
-
 </div>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-12">

@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CatalogService } from '../services/catalog.service';
 import { EmployeeOrderService } from '../services/employee-order.service';
+import { EmployeeService } from '../services/employee.service';
 import { Catalog } from '../Models/catalog';
 import { EmployeeOrder } from '../Models/employee-order';
 import { LoginService } from '../services/login.service';
 import { LogInIser } from '../models/loginuser';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gift-card',
@@ -26,6 +27,9 @@ export class GiftCardComponent implements OnInit {
   isTileShow = true;
   selectedCatalogId: number = 0;
   selectedCatalogName: string = '';
+  selectedImageUrl: string = '';
+  imagUrl: string = '';
+  walletBalance: number = 0;
 
   get formControls() { return this.addForm.controls; }
 
@@ -33,6 +37,7 @@ export class GiftCardComponent implements OnInit {
     private router: Router,
     public apiService: CatalogService,
     public employeeOrderService: EmployeeOrderService,
+    public employeeService: EmployeeService,
     public authenticationService: LoginService) { }
 
   ngOnInit() {
@@ -42,14 +47,20 @@ export class GiftCardComponent implements OnInit {
       this.router.navigate(['login']);
       return;
     }
+    this.imagUrl = `${environment.imagUrl}`;
     this.getCatalogDetails();
+    this.getWalletBallance();
   }
-
+  getWalletBallance() {
+    this.employeeService.getEmployeeWallet(this.currentLoginUser.employeeId)
+      .subscribe(data => {
+        this.walletBalance = data;
+      });
+  }
   getCatalogDetails() {
     this.apiService.getCatalog()
       .subscribe(data => {
         this.catalogs = data;
-        console.log(this.catalogs);
         this.catalogs = this.catalogs.filter(t => t.catalogTypeId === 1);
       });
   }
@@ -67,11 +78,11 @@ export class GiftCardComponent implements OnInit {
     });
   }
 
-  showCouponDetail(catalogId, catalogName) {
+  selectCatalog(catalog: any) {
     this.isTileShow = false;
-    this.selectedCatalogId = catalogId;
-    this.selectedCatalogName = catalogName;
-    console.log(catalogId);
+    this.selectedCatalogId = catalog.catalogId;
+    this.selectedCatalogName = catalog.catalogName;
+    this.selectedImageUrl = `${environment.imagUrl}` + catalog.imageFileName;
   }
 
   onSubmit() {
@@ -115,31 +126,28 @@ export class GiftCardComponent implements OnInit {
     this.intialFormValue();
   }
 
-  numberOnly(event, type): boolean {
+  priceCalculation() {
+    this.isFail = false;
+    let total: number
+    let quantity: number = this.addForm.value['quantity'] == '' ? 0 : parseInt(this.addForm.value['quantity'])
+    let cardValue: number = this.addForm.value['cardValue'] == '' ? 0 : parseInt(this.addForm.value['cardValue'])
+    if (quantity > 0 && cardValue > 0) {
+      total = cardValue * quantity
+      this.addForm.controls['total'].setValue(total);
+      if (total > this.walletBalance) {
+        this.isFail = true;
+        this.statusMessage = 'Enter amount should not be greater than wallet balance'
+      }
+    }
+    else
+      this.addForm.controls['total'].setValue('');
+
+  }
+  numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       return false;
     }
-    // let total = 0
-    // if (type == 'card') {
-    //   let quantity = this.addForm.value['quantity'] == '' ? 0 : parseInt(this.addForm.value['quantity'])
-    //   let cardValue = event.target.value == '' ? 0 : parseInt(event.target.value)
-    //   total = cardValue * quantity
-    // }
-    // else {
-    //   let cardValue = this.addForm.value['cardValue'] == '' ? 0 : parseInt(this.addForm.value['cardValue'])
-    //   let quantity = event.target.value == '' ? 0 : parseInt(event.target.value)
-    //   total = cardValue * quantity
-    // }
-    // this.addForm.controls['total'].setValue(total);
     return true;
-  }
-  calc() {
-    let total
-    let quantity = this.addForm.value['quantity'] == '' ? 0 : parseInt(this.addForm.value['quantity'])
-    let cardValue = this.addForm.value['cardValue'] == '' ? 0 : parseInt(this.addForm.value['cardValue'])
-    total = cardValue * quantity
-    console.log(total);
-    this.addForm.controls['total'].setValue(total);
   }
 }

@@ -61,6 +61,7 @@ export class CompanycontactComponent implements OnInit {
 
   reset() {
     this.submitted = false;
+    this.isEdit = false;
     this.addForm.reset();
   }
 
@@ -84,12 +85,14 @@ export class CompanycontactComponent implements OnInit {
           this.statusMessage = 'Contact Name: ' + companyContact.contactName + ' deleted successfully'
           this.isFail = true
           this.ShowMessage()
+          this.reset()
         }
         else {
           this.statusMessage = data.statusDescription
           this.isFail = true
         }
       })
+      window.scrollTo(0,0)
   };
 
   editCompanyContact(companyContact: CompanyContact): void {
@@ -100,6 +103,7 @@ export class CompanycontactComponent implements OnInit {
       });
 
     this.isEdit = true;
+    window.scrollTo(0,0)
   };
 
   onSubmit() {

@@ -1,0 +1,22 @@
+<div class="grid-margin">
+    <h3>Play Book Upload</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="row" style="margin-bottom:15px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                    style="display:none;">
+                <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+                <button style="margin-left: 5px;" type="button" class="btn btn-success">Download Template</button>
+                <div class="col-md-12">
+                    <span class="upload" *ngIf="progress > 0">
+                        {{progress}}%
+                    </span>
+                    <span class="upload" *ngIf="message">
+                        {{message}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
