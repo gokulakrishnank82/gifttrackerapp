@@ -45,7 +45,7 @@
 
           </label>
           <input type="text" class="form-control" id="businessTypeName" formControlName="businessTypeName"
-            name="businessTypeName" placeholder="Business Type Name"
+            name="businessTypeName"
             [ngClass]="(submitted && formControls.businessTypeName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div
             *ngIf="submitted && formControls.businessTypeName.errors && formControls.businessTypeName.errors.required"

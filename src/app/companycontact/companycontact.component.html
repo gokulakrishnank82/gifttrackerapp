@@ -46,7 +46,6 @@
 
           </label>
           <input type="text" class="form-control" id="contactName" formControlName="contactName" name="contactName"
-            placeholder="Contact Name"
             [ngClass]="(submitted && formControls.contactName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.contactName.errors && formControls.contactName.errors.required"
             class="text-danger mt-2">Contact Name is required</div>
@@ -65,7 +64,7 @@
         </div>
         <div class="intro-y col-span-12 sm:col-span-6">
           <label for="input-wizard-3" class="form-label">Email</label>
-          <input type="text" class="form-control" id="email" formControlName="email" name="email" placeholder="Email"
+          <input type="text" class="form-control" id="email" formControlName="email" name="email" 
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             [ngClass]="(submitted && formControls.email.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.email.errors && formControls.email.errors.required"
@@ -77,7 +76,7 @@
           <label for="input-wizard-4" class="form-label">Contact Number
           </label>
           <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber"
-            name="contactNumber" placeholder="Contact Number" (keypress)="numberOnly($event)" minlength="10"
+            name="contactNumber" (keypress)="numberOnly($event)" minlength="10"
             maxlength="10"
             [ngClass]="(submitted && formControls.contactNumber.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.contactNumber.errors && formControls.contactNumber.errors.required"
@@ -89,7 +88,7 @@
           <label for="input-wizard-4" class="form-label">Alternate Number
           </label>
           <input type="text" class="form-control" id="alternateNumber" formControlName="alternateNumber"
-            name="alternateNumber" placeholder="Alternate Number" (keypress)="numberOnly($event)" maxlength="10"
+            name="alternateNumber" (keypress)="numberOnly($event)" maxlength="10"
             minlength="10"
             [ngClass]="(submitted && formControls.alternateNumber.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.alternateNumber.errors && formControls.alternateNumber.errors.required"

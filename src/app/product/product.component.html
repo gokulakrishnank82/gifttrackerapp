@@ -45,7 +45,6 @@
 
           </label>
           <input type="text" class="form-control" id="productName" formControlName="productName" name="productName"
-            placeholder="Product Name"
             [ngClass]="(submitted && formControls.productName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.productName.errors && formControls.productName.errors.required"
             class="text-danger mt-2">Product Name is required</div>

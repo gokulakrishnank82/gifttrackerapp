@@ -44,7 +44,7 @@
 
           </label>
           <input type="text" class="form-control" id="paymentTypeName" formControlName="paymentTypeName"
-            name="paymentTypeName" placeholder="Payment Type Name"
+            name="paymentTypeName"
             [ngClass]="(submitted && formControls.paymentTypeName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.paymentTypeName.errors && formControls.paymentTypeName.errors.required"
             class="text-danger mt-2">Payment Type Name is required</div>

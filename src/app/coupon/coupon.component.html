@@ -87,7 +87,7 @@
                             <div>
                                 <label for="cardValue" class="form-label">Enter Card Value</label>
                                 <input type="text" class="form-control" id="cardValue" formControlName="cardValue"
-                                    name="cardValue" placeholder="Enter card Value" (keypress)="numberOnly($event)"
+                                    name="cardValue" (keypress)="numberOnly($event)"
                                     (keyup)="priceCalculation()"
                                     [ngClass]="(submitted && formControls.cardValue.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                                 <div *ngIf="submitted && formControls.cardValue.errors && formControls.cardValue.errors.required"
@@ -96,7 +96,7 @@
                             <div class="mt-3">
                                 <label for="quantity" class="form-label">Quantity</label>
                                 <input type="text" class="form-control" id="quantity" formControlName="quantity"
-                                    name="quantity" placeholder="Quantity" (keypress)="numberOnly($event)"
+                                    name="quantity" (keypress)="numberOnly($event)"
                                     (keyup)="priceCalculation()"
                                     [ngClass]="(submitted && formControls.quantity.errors)?'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                                 <div *ngIf="submitted && formControls.quantity.errors && formControls.quantity.errors.required"
@@ -105,7 +105,7 @@
                             <div class="mt-3">
                                 <label for="total" class="form-label">Total</label>
                                 <input type="text" class="form-control" id="total" formControlName="total" name="total"
-                                    placeholder="Total" readonly>
+                                     readonly>
                             </div>
 
                             <div class="mt-3">

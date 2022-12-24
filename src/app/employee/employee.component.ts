@@ -180,7 +180,6 @@ export class EmployeeComponent implements OnInit {
     }
     this.statusMessage = data.statusDescription
     this.ShowMessage();
-
   }
 
   ShowMessage() {

@@ -19,6 +19,12 @@
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
+    <li *ngIf="isSuperAdmin || isAdmin" class="nav-item" [ngClass]="{ 'active': bulkuplod.isActive }">
+      <a class="nav-link" routerLink="/bulkuplod" routerLinkActive #bulkuplod="routerLinkActive">
+        <span class="menu-title">Employee Bulk Uplod</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
     <li *ngIf="isNormalUser" class="nav-item" [ngClass]="{ 'active': giftcatalog.isActive }">
       <a class="nav-link" routerLink="/giftcatalog" routerLinkActive #giftcatalog="routerLinkActive">
         <span class="menu-title">Gift Card Catalog</span>

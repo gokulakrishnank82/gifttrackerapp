@@ -72,7 +72,7 @@
                     <label for="input-wizard-2" class="form-label">Add Money
                     </label>
                     <input type="text" class="form-control" id="amount" formControlName="amount" name="amount"
-                        placeholder="Amount" (keypress)="numberOnly($event)"
+                        (keypress)="numberOnly($event)"
                         [ngClass]="(submitted && formControls.amount.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                     <div *ngIf="submitted && formControls.amount.errors && formControls.amount.errors.required"
                         class="text-danger mt-2">Amount is required</div>

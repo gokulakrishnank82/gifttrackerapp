@@ -44,7 +44,6 @@
 
           </label>
           <input type="text" class="form-control" id="roleName" formControlName="roleName" name="roleName"
-            placeholder="Role Name"
             [ngClass]="(submitted && formControls.roleName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
           <div *ngIf="submitted && formControls.roleName.errors && formControls.roleName.errors.required"
             class="text-danger mt-2">Role Name is required</div>

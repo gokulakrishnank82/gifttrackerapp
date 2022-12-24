@@ -46,7 +46,7 @@
 
                     </label>
                     <input type="text" class="form-control" id="catalogName" formControlName="catalogName"
-                        name="catalogName" placeholder="Catalog Name"
+                        name="catalogName"
                         [ngClass]="(submitted && formControls.catalogName.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
                     <div *ngIf="submitted && formControls.catalogName.errors && formControls.catalogName.errors.required"
                         class="text-danger mt-2">Catalog Name is required</div>
@@ -87,7 +87,7 @@
 
             <div class="p-5" id="striped-rows-table">
                 <div class="preview">
-                    <div class="overflow-x-auto"  *ngIf="catalogs.length > 0">
+                    <div class="overflow-x-auto" *ngIf="catalogs.length > 0">
                         <table class="table table-striped">
                             <thead>
                                 <tr>

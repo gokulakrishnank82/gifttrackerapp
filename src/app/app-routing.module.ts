@@ -18,6 +18,7 @@ import { CatalogComponent } from './catalog/catalog.component'
 import { EmployeeOrderComponent } from './employee-order/employee-order.component'
 import { GiftCardComponent } from './gift-card/gift-card.component'
 import { CouponComponent } from './coupon/coupon.component'
+import { EmployeeBulkloadComponent } from './employee-bulkload/employee-bulkload.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'catagory', component: CatalogComponent },
   { path: 'employeeorder', component: EmployeeOrderComponent },
   { path: 'employeefundhistory', component: EmployeeFundHistoryComponent },
+  { path: 'bulkuplod', component: EmployeeBulkloadComponent },
   { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   { path: 'general-pages', loadChildren: () => import('./general-pages/general-pages.module').then(m => m.GeneralPagesModule) },
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },

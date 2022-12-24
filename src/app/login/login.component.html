@@ -45,23 +45,23 @@
                     <div class="intro-x mt-8">
                         <input type="text"
                             [ngClass]="(submitted && f.username.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'"
-                            placeholder="User Name" formControlName="username">
+                            formControlName="username">
                         <div *ngIf="submitted && f.username.errors && f.username.errors.required"
                             class="text-danger mt-2">User Name is required</div>
                         <input type="password"
                             [ngClass]="(submitted && f.password.errors)? 'intro-x login__input form-control py-3 px-4 block mt-4 border-danger':'intro-x login__input form-control py-3 px-4 block mt-4'"
-                            placeholder="Password" formControlName="password">
+                            formControlName="password">
                         <div *ngIf="submitted && f.password.errors && f.password.errors.required"
                             class="text-danger mt-2">Password is required</div>
                     </div>
                     <div class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
-                        <div class="flex items-center mr-auto">                           
+                        <div class="flex items-center mr-auto">
                         </div>
                         <a href="javascript:;" [routerLink]="['/forget-password']">Forgot Password?</a>
                     </div>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                         <button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
-                       
+
                     </div>
 
                     <div class="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left"> By
