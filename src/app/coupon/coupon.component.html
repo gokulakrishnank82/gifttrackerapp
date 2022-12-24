@@ -44,14 +44,15 @@
             <a href="javascript:;"
                 class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary"
                 (click)="selectCatalog(catalog)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                <img src="{{ imagUrl + catalog.imageFileName }}" alt="{{catalog.imageFileName}}" />
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     icon-name="award" data-lucide="award"
                     class="lucide lucide-award block w-12 h-12 text-primary mx-auto">
                     <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
                     <circle cx="12" cy="8" r="7"></circle>
                 </svg>
-
+ -->
                 <div class="font-medium text-center text-base mt-3">{{catalog.catalogName}}</div>
                 <!-- <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
                 </div>
@@ -63,7 +64,7 @@
     <ng-container *ngIf="!isTileShow">
         <a href="javascript:;"
             class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary customGiftCard">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="gift"
                 data-lucide="gift" class="lucide lucide-gift block w-12 h-12 text-primary mx-auto">
                 <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -71,7 +72,8 @@
                 <line x1="12" y1="22" x2="12" y2="7"></line>
                 <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"></path>
                 <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
-            </svg>
+            </svg> -->
+            <img src="{{selectedImageUrl}}" class="card-img-absolute" alt="circle-image" />
             <div class="font-medium text-center text-base mt-3">{{selectedCatalogName}}</div>
             <!-- <div class="text-slate-500 mt-2 w-3/4 text-center mx-auto">95,5741
             </div>

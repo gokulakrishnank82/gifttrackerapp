@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CatalogTypeService } from '../services/catalog-type.service';
@@ -27,6 +27,7 @@ export class CatalogComponent implements OnInit {
   submitted = false;
   selectedFile: File = null;
   imagUrl: string = '';
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   get formControls() { return this.addForm.controls; }
 
@@ -53,6 +54,9 @@ export class CatalogComponent implements OnInit {
       catalogId: [''],
       catalogName: ['', Validators.required],
       catalogTypeId: ['', Validators.required],
+      detail: [''],
+      termsAndCondition: [''],
+      about: [''],
       createdBy: [''],
       createdTime: [''],
       modifiedBy: [''],
@@ -91,7 +95,7 @@ export class CatalogComponent implements OnInit {
           this.isFail = true
         }
       })
-      window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   };
 
   editCatalog(catalog: Catalog): void {
@@ -102,7 +106,7 @@ export class CatalogComponent implements OnInit {
       });
 
     this.isEdit = true;
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   };
 
   onSubmit() {
@@ -116,6 +120,9 @@ export class CatalogComponent implements OnInit {
     const formData = new FormData();
     formData.append('catalogName', this.addForm.value["catalogName"]);
     formData.append('catalogTypeId', this.addForm.value["catalogTypeId"]);
+    formData.append('termsAndCondition', this.addForm.value["termsAndCondition"]);
+    formData.append('detail', this.addForm.value["detail"]);
+    formData.append('about', this.addForm.value["about"]);
     formData.append('fileDetails', this.selectedFile);
     formData.append('createdBy', this.currentLoginUser.employeeId.toString());
     formData.append('modifiedBy', this.currentLoginUser.employeeId.toString());
@@ -147,6 +154,7 @@ export class CatalogComponent implements OnInit {
       this.isFail = true;
     }
     this.selectedFile = null;
+    this.fileInput.nativeElement.value = '';
     this.statusMessage = data.statusDescription
     this.ShowMessage();
   }

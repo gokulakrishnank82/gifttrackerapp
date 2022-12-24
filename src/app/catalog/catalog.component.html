@@ -64,12 +64,27 @@
                     <div *ngIf="submitted && formControls.catalogTypeId.errors && formControls.catalogTypeId.errors.required"
                         class="text-danger mt-2">Catalog Type is required</div>
                 </div>
-                <div class="intro-y col-span-12 sm:col-span-6" style="display:none;">
+                <div class="intro-y col-span-12 sm:col-span-6">
                     <label class="btn btn-secondary" (click)="fileInput.value = null">
                         Choose File
-                        <input #fileInput type="file" accept=".jpg,.png,.gif" style="display: none;"
-                            (change)="chooseFile(fileInput.files)" />
+                        <input #fileInput type="file" accept=".jpg,.png,.gif" (change)="chooseFile(fileInput.files)" />
                     </label>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-12">
+                    <label for="input-wizard-1" class="form-label">Catalog Detail
+                    </label>
+                    <textarea id="detail" formControlName="detail" name="detail" rows="4" cols="50"></textarea>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-12">
+                    <label for="input-wizard-1" class="form-label">Terms And Conditions
+                    </label>
+                    <textarea id="termsAndCondition" formControlName="termsAndCondition" name="termsAndCondition"
+                        rows="4" cols="50"></textarea>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-12">
+                    <label for="input-wizard-1" class="form-label">About
+                    </label>
+                    <textarea id="about" formControlName="about" name="about" rows="4" cols="50"></textarea>
                 </div>
                 <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
                     <button type="submit" class="btn btn-primary w-24">Submit</button>
@@ -84,7 +99,6 @@
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-12">
         <div class="intro-y box mt-5">
-
             <div class="p-5" id="striped-rows-table">
                 <div class="preview">
                     <div class="overflow-x-auto" *ngIf="catalogs.length > 0">
@@ -93,7 +107,7 @@
                                 <tr>
                                     <th class="whitespace-nowrap">Catalog Name</th>
                                     <th class="whitespace-nowrap">Catalog Type</th>
-                                    <th>Logo</th>
+                                    <!-- <th>Logo</th> -->
                                     <th class="whitespace-nowrap">Action</th>
                                 </tr>
                             </thead>
@@ -101,9 +115,9 @@
                                 <tr *ngFor="let catalog of catalogs">
                                     <td>{{catalog.catalogName}}</td>
                                     <td>{{catalog.catalogType}}</td>
-                                    <td>
+                                    <!-- <td>
                                         <img src='{{ imagUrl + catalog.imageFileName }}'>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <div class="flex  items-center">
                                             <a class="edit flex items-center mr-3" href="javascript:;"
