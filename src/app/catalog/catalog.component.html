@@ -93,7 +93,7 @@
                                 <tr>
                                     <th class="whitespace-nowrap">Catalog Name</th>
                                     <th class="whitespace-nowrap">Catalog Type</th>
-                                    <!-- <th>Image</th> -->
+                                    <th>Logo</th>
                                     <th class="whitespace-nowrap">Action</th>
                                 </tr>
                             </thead>
@@ -101,9 +101,9 @@
                                 <tr *ngFor="let catalog of catalogs">
                                     <td>{{catalog.catalogName}}</td>
                                     <td>{{catalog.catalogType}}</td>
-                                    <!-- <td>
+                                    <td>
                                         <img src='{{ imagUrl + catalog.imageFileName }}'>
-                                    </td> -->
+                                    </td>
                                     <td>
                                         <div class="flex  items-center">
                                             <a class="edit flex items-center mr-3" href="javascript:;"
