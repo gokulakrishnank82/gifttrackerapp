@@ -34,6 +34,9 @@
     </div>
   </div>
 </div>
+<div>
+  <input type="text" [(ngModel)]="term" class="searchTerm" />
+</div>
 <div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
   <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
@@ -140,7 +143,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let employee of employeeDetails">
+                <tr *ngFor="let employee of employeeDetails | filter: term">
                   <td>{{employee.employeeName}}</td>
                   <td>{{employee.email}}</td>
                   <td>{{employee.mobileNumber}}</td>

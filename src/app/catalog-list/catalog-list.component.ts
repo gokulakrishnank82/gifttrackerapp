@@ -17,6 +17,8 @@ export class CatalogListComponent implements OnInit {
   addForm: FormGroup;
   currentLoginUser: LogInIser;
   imagUrl: string = '';
+  searchTerm = '';
+  term = '';
 
   get formControls() { return this.addForm.controls; }
 

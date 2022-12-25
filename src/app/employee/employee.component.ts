@@ -27,7 +27,9 @@ export class EmployeeComponent implements OnInit {
   isSuccess: Boolean = false;
   isFail: Boolean = false;
   submitted = false;
-
+  searchTerm = '';
+  term = '';
+  
   get formControls() { return this.addForm.controls; }
 
   constructor(public formBuilder: FormBuilder, private router: Router,

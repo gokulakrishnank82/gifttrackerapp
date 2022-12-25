@@ -37,6 +37,7 @@ import { GiftCardComponent } from './gift-card/gift-card.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { EmployeeBulkloadComponent } from './employee-bulkload/employee-bulkload.component';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { CatalogListComponent } from './catalog-list/catalog-list.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule
     // ChartsModule
   ],
   providers: [
