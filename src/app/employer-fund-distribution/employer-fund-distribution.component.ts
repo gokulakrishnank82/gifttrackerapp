@@ -27,6 +27,12 @@ export class EmployerFundDistributionComponent implements OnInit {
   employeeName: string = '';
   totalAvailableFund: number = 0;
   employeeCount: number = 0;
+  showNameSearch: boolean = false;
+  showEmailSearch: boolean = false;
+  showIdSearch: boolean = false;
+  showNumberSearch: boolean = false;
+  isSearching: boolean = false;
+  searchedEmployees: any = [];
 
   get formControls() { return this.addForm.controls; }
 
@@ -51,23 +57,56 @@ export class EmployerFundDistributionComponent implements OnInit {
 
   }
 
-  getEmployeeByType(event) {
+  filterCars(type, value) {
+    switch (type) {
+      case 'name':
+        this.searchedEmployees = this.employeeDetails.filter((val) => val.employeeName.toLowerCase().includes(value.toLowerCase()) == true)
+        this.showNameSearch = true;
+        break;
+      case 'email':
+        this.searchedEmployees = this.employeeDetails.filter((val) => val.email.toLowerCase().includes(value.toLowerCase()) == true)
+        this.showEmailSearch = true;
+        break;
+      case 'employeeNumber':
+        this.searchedEmployees = this.employeeDetails.filter((val) => val.employeeNumber.toString().includes(value.toLowerCase()) == true)
+        this.showNumberSearch = true;
+        break;
+      case 'employeeId':
+        this.searchedEmployees = this.employeeDetails.filter((val) => val.employeeId.toString().includes(value.toLowerCase()) == true)
+        this.showIdSearch = true;
+        break;
+      default:
+        break;
+    }
 
   }
-  bindEmployeeDetails(event, type) {
+
+  searchEmployee(type, event) {
+    this.showNameSearch = false;
+    this.showIdSearch = false;
+    this.showNumberSearch = false;
+    this.showEmailSearch = false;
+    this.filterCars(type, event.target.value)
+  }
+
+  bindEmployeeDetails(type, value) {
     let employee: Employee
     switch (type) {
       case 'name':
-        employee = this.employeeDetails.find(t => t.employeeName.toLowerCase() === event.target.value.toLowerCase());
+        employee = this.employeeDetails.find(t => t.employeeName.toLowerCase() === value.toLowerCase());
+        this.showNameSearch = false;
         break;
       case 'email':
-        employee = this.employeeDetails.find(t => t.email.toLowerCase() === event.target.value.toLowerCase());
+        employee = this.employeeDetails.find(t => t.email.toLowerCase() === value.toLowerCase());
+        this.showEmailSearch = false;
         break;
-      case 'number':
-        employee = this.employeeDetails.find(t => t.employeeNumber === parseInt(event.target.value));
+      case 'employeeNumber':
+        employee = this.employeeDetails.find(t => t.employeeNumber === parseInt(value));
+        this.showNumberSearch = false;
         break;
       case 'employeeId':
-        employee = this.employeeDetails.find(t => t.employeeId === parseInt(event.target.value));
+        employee = this.employeeDetails.find(t => t.employeeId === parseInt(value));
+        this.showIdSearch = false;
         break;
       default:
         break;
@@ -127,6 +166,7 @@ export class EmployerFundDistributionComponent implements OnInit {
       .subscribe(data => {
         this.employeeDetails = data;
         this.employeeCount = data.length;
+        this.searchedEmployees = data;
       });
   }
 

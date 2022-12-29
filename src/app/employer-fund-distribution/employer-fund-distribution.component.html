@@ -1,122 +1,145 @@
 <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-    <h2 class="text-lg font-medium mr-auto">
-        Employer Fund Distribution
-    </h2>
+  <h2 class="text-lg font-medium mr-auto">
+    Employer Fund Distribution
+  </h2>
 </div>
-
 <div id="icon-dismiss-alert" class="p-5" [hidden]="isSuccess!=1">
-    <div class="preview">
-        <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                icon-name="alert-triangle" data-lucide="alert-triangle"
-                class="lucide lucide-alert-triangle w-6 h-6 mr-2">
-                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
-                <line x1="12" y1="9" x2="12" y2="13"></line>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg> <strong>Success!</strong>&nbsp;&nbsp; saved successfully.
-            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
-                    data-lucide="x" class="w-4 h-4"></i> </button>
-        </div>
+  <div class="preview">
+    <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="alert-triangle"
+        data-lucide="alert-triangle" class="lucide lucide-alert-triangle w-6 h-6 mr-2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg> <strong>Success!</strong>&nbsp;&nbsp; saved successfully.
+      <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
+          class="w-4 h-4"></i> </button>
     </div>
+  </div>
 </div>
 <div id="icon-dismiss-alert" class="p-5" [hidden]="isFail!=1">
-    <div class="preview">
-        <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                icon-name="alert-octagon" data-lucide="alert-octagon" class="lucide lucide-alert-octagon w-6 h-6 mr-2">
-                <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg><strong> Info! </strong>&nbsp;&nbsp; {{statusMessage}}
-            <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i
-                    data-lucide="x" class="w-4 h-4"></i> </button>
-        </div>
+  <div class="preview">
+    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="alert-octagon"
+        data-lucide="alert-octagon" class="lucide lucide-alert-octagon w-6 h-6 mr-2">
+        <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg><strong> Info! </strong>&nbsp;&nbsp; {{statusMessage}}
+      <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
+          class="w-4 h-4"></i> </button>
     </div>
+  </div>
 </div>
 <div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
 
-    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
-        <div class="font-medium text-lg">Employee Search</div>
-        <div class="font-medium text-base">Total Available Funds : {{totalAvailableFund|currency:"INR":"symbol"}}</div>
-        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-            <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
-                <div class=" intro-y col-span-12 sm:col-span-6">
-                    <label for="input-wizard-4" class="form-label">Select Perk Type
-                    </label>
-                    <select class="form-select" id="perkType" name="perkType" formControlName="perkType"
-                        (change)='perkTypeChange($event)'
-                        [ngClass]="(submitted && formControls.perkType.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+  <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+    <div class="font-medium text-lg">Employee Search</div>
+    <div class="font-medium text-base">Total Available Funds : {{totalAvailableFund|currency:"INR":"symbol"}}</div>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+        <div class=" intro-y col-span-12 sm:col-span-6">
+          <label for="input-wizard-4" class="form-label">Select Perk Type
+          </label>
+          <select class="form-select" id="perkType" name="perkType" formControlName="perkType"
+            (change)='perkTypeChange($event)'
+            [ngClass]="(submitted && formControls.perkType.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
 
-                        <option value="1">Individual</option>
-                        <option value="2">Multiple</option>
-                    </select>
-                    <div *ngIf="(submitted && formControls.perkType.errors && formControls.perkType.errors.required)"
-                        class="text-danger mt-2">Perk Type is required</div>
+            <option value="1">Individual</option>
+            <option value="2">Multiple</option>
+          </select>
+          <div *ngIf="(submitted && formControls.perkType.errors && formControls.perkType.errors.required)"
+            class="text-danger mt-2">Perk Type is required</div>
+        </div>
+        <ng-container *ngIf="perkValue =='1'">
+          <div class="intro-y col-span-12 sm:col-span-6">
+            <label for="input-wizard-1" class="form-label">Employee ID</label>
+            <input type="text" class="form-control" id="employeeId" formControlName="employeeId" name="employeeId"
+              autocomplete="off" (click)="showIdSearch = true" (keyup)="searchEmployee('employeeId',$event)">
+            <div class="card" style="position:absolute w-100" [hidden]="!showIdSearch">
+              <div class="search">
+                <div *ngFor="let employee of searchedEmployees;" tappable
+                  (click)="bindEmployeeDetails('employeeId',employee.employeeId)">
+                  {{employee.employeeId}}
                 </div>
-                <ng-container *ngIf="perkValue =='1'">
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-1" class="form-label">Employee ID</label>
-                        <input type="text" class="form-control" id="employeeId" formControlName="employeeId"
-                            name="employeeId" (keypress)="numberOnly($event)" list="employeeIds"
-                            (change)="bindEmployeeDetails($event,'employeeId')">
-                        <datalist id="employeeIds">
-                            <option *ngFor="let employee of employeeDetails" [value]="employee.employeeId">
-                                {{employee.employeeId}}</option>
-                        </datalist>
-                    </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-1" class="form-label">Employee Name</label>
-                        <input type="text" class="form-control" id="employeeName" formControlName="employeeName"
-                            name="employeeName" (keyup)="getEmployeeByType($event)" list="employeeNames"
-                            (change)="bindEmployeeDetails($event,'name')">
-                        <datalist id="employeeNames">
-                            <option *ngFor="let employee of employeeDetails" [value]="employee.employeeName">
-                                {{employee.employeeName}}</option>
-                        </datalist>
-                    </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-1" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" formControlName="email" name="email"
-                            (keyup)="getEmployeeByType($event)" list="employeeEmails"
-                            (change)="bindEmployeeDetails($event,'email')">
-                        <datalist id="employeeEmails">
-                            <option *ngFor="let employee of employeeDetails" [value]="employee.email">
-                                {{employee.email}}</option>
-                        </datalist>
-                    </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-1" class="form-label">Employee Number</label>
-                        <input type="text" class="form-control" id="employeeNumber" formControlName="employeeNumber"
-                            name="employeeNumber" (keyup)="getEmployeeByType($event)" list="employeeNumbers"
-                            (change)="bindEmployeeDetails($event,'number')">
-                        <datalist id="employeeNumbers">
-                            <option *ngFor="let employee of employeeDetails" [value]="employee.employeeNumber">
-                                {{employee.employeeNumber}}</option>
-                        </datalist>
-                    </div>
-                </ng-container>
-                <div class=" intro-y col-span-12 sm:col-span-6">
-                    <label for="input-wizard-4" class="form-label">Comments
-                    </label>
-                    <input type="text" class="form-control" id="comment" formControlName="comment" name="comment">
-                </div>
-                <div class=" intro-y col-span-12 sm:col-span-6">
-                    <label for="input-wizard-4" class="form-label">Perk Value
-                    </label>
-                    <input type="text" class="form-control" id="perkValue" formControlName="perkValue" name="perkValue"
-                        (keypress)="numberOnly($event)"
-                        [ngClass]="(submitted && formControls.perkValue.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
-                    <div *ngIf="submitted && formControls.perkValue.errors && formControls.perkValue.errors.required"
-                        class="text-danger mt-2">Perk Value is required</div>
-                </div>
-
-                <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
-                    <button type="submit" class="btn btn-primary w-24">Add</button>
-
-                </div>
+              </div>
+              <p class="search" *ngIf="searchedEmployees && searchedEmployees.length <= 0 && !isSearching">No Employee
+                found</p>
+              <p class="search" [hidden]="!isSearching">Searching employee ids...</p>
             </div>
-        </form>
-    </div>
+          </div>
+          <div class="intro-y col-span-12 sm:col-span-6">
+            <label for="input-wizard-1" class="form-label">Employee Name</label>
+            <input type="text" class="form-control" id="employeeName" formControlName="employeeName" name="employeeName"
+              autocomplete="off" (click)="showNameSearch = true" (keyup)="searchEmployee('name',$event)">
+            <div class="card" style="position:absolute w-100" [hidden]="!showNameSearch">
+              <div class="search">
+                <div *ngFor="let employee of searchedEmployees;" tappable
+                  (click)="bindEmployeeDetails('name',employee.employeeName)">
+                  {{employee.employeeName}}
+                </div>
+              </div>
+              <p class="search" *ngIf="searchedEmployees && searchedEmployees.length <= 0 && !isSearching">No Employee
+                found</p>
+              <p class="search" [hidden]="!isSearching">Searching employee names...</p>
+            </div>
+          </div>
+          <div class="intro-y col-span-12 sm:col-span-6">
+            <label for="input-wizard-1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email" name="email" autocomplete="off"
+              (click)="showEmailSearch = true" (keyup)="searchEmployee('email',$event)">
+            <div class="card" style="position:absolute w-100" [hidden]="!showEmailSearch">
+              <div class="search">
+                <div *ngFor="let employee of searchedEmployees;" tappable
+                  (click)="bindEmployeeDetails('email',employee.email)">
+                  {{employee.email}}
+                </div>
+              </div>
+              <p class="search" *ngIf="searchedEmployees && searchedEmployees.length <= 0 && !isSearching">No Employee
+                found</p>
+              <p class="search" [hidden]="!isSearching">Searching employee names...</p>
+            </div>
+          </div>
+          <div class="intro-y col-span-12 sm:col-span-6">
+            <label for="input-wizard-1" class="form-label">Employee Number</label>
+            <input type="text" class="form-control" id="employeeNumber" formControlName="employeeNumber"
+              name="employeeNumber" autocomplete="off" (click)="showNumberSearch = true"
+              (keyup)="searchEmployee('employeeNumber',$event)">
+            <div class="card" style="position:absolute w-100" [hidden]="!showNumberSearch">
+              <div class="search">
+                <div *ngFor="let employee of searchedEmployees;" tappable
+                  (click)="bindEmployeeDetails('employeeNumber',employee.employeeNumber)">
+                  {{employee.employeeNumber}}
+                </div>
+              </div>
+              <p class="search" *ngIf="searchedEmployees && searchedEmployees.length <= 0 && !isSearching">No Employee
+                found</p>
+              <p class="search" [hidden]="!isSearching">Searching employee numbers...</p>
+            </div>
+          </div>
+        </ng-container>
+        <div class=" intro-y col-span-12 sm:col-span-6">
+          <label for="input-wizard-4" class="form-label">Comments
+          </label>
+          <input type="text" class="form-control" id="comment" formControlName="comment" name="comment">
+        </div>
+        <div class=" intro-y col-span-12 sm:col-span-6">
+          <label for="input-wizard-4" class="form-label">Perk Value
+          </label>
+          <input type="text" class="form-control" id="perkValue" formControlName="perkValue" name="perkValue"
+            (keypress)="numberOnly($event)"
+            [ngClass]="(submitted && formControls.perkValue.errors)? 'intro-x login__input form-control py-3 px-4 block border-danger': 'intro-x login__input form-control py-3 px-4 block'">
+          <div *ngIf="submitted && formControls.perkValue.errors && formControls.perkValue.errors.required"
+            class="text-danger mt-2">Perk Value is required</div>
+        </div>
+
+        <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
+          <button type="submit" class="btn btn-primary w-24">Add</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
