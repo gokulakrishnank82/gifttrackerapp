@@ -4,9 +4,12 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'http://13.126.92.15/gift-tracker-api/api/',
-  apiUrl:'http://localhost:48447/api/',
-  imagUrl:'http://localhost:48447/'
+  apiUrl: 'http://13.126.92.15/gift-tracker-api/api/',
+  imagUrl: 'http://13.126.92.15/gift-tracker-api/',
+  templatedownloadUrl: 'http://13.126.92.15/gift-tracker-api/Resources/Template/SampleTemplate.xlsx'
+  //apiUrl: 'http://localhost:48447/api/',
+  // imagUrl: 'http://localhost:48447/',
+  // templatedownloadUrl: 'http://localhost:48447/Resources/Template/SampleTemplate.xlsx'
 };
 
 /*
