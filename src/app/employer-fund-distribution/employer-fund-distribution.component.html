@@ -1,4 +1,4 @@
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
   <h2 class="text-lg font-medium mr-auto">
     Employer Fund Distribution
   </h2>
@@ -35,7 +35,7 @@
 </div>
 <div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
 
-  <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+  <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400 mar-top10">
     <div class="font-medium text-lg">Employee Search</div>
     <div class="font-medium text-base">Total Available Funds : {{totalAvailableFund|currency:"INR":"symbol"}}</div>
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">

@@ -1,17 +1,23 @@
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
     <h2 class="text-lg font-medium mr-auto">
         Employee Fund History
     </h2>
+    <div class="flex flex-col sm:flex-row items-center p-5 ">
+        <h2 class="font-medium text-base mr-auto">
+            Available Amount:
+            {{totalAmount|currency:"INR":"symbol"}}
+        </h2>
+    </div>
 </div>
-<div class="grid grid-cols-12 gap-6 mt-5">
+<div class="grid grid-cols-12 gap-6 mt-5 mar-top10">
     <div class="intro-y col-span-12 lg:col-span-12">
-        <div class="intro-y box mt-5">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+        <div class="intro-y box mt-5 mar-top10">
+            <!--<div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
                 <h2 class="font-medium text-base mr-auto">
                     Available Amount:
                     {{totalAmount|currency:"INR":"symbol"}}
                 </h2>
-            </div>
+            </div>-->
             <div class="p-5" id="striped-rows-table">
                 <div class="preview">
                     <div class="overflow-x-auto">
@@ -32,6 +38,15 @@
                                     <td>{{fundHistory.comment}}</td>
                                     <td>{{fundHistory.addedBy}}</td>
                                     <td>{{fundHistory.addedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+                                </tr>
+                                <tr *ngIf="employeeFundHistory.length === 0">
+
+
+                                    <td></td>
+                                    <td>No Records</td>
+                                    <td></td>
+                                    <td></td>
+
                                 </tr>
                             </tbody>
                         </table>

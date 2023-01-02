@@ -1,13 +1,18 @@
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
     <h2 class="text-lg font-medium mr-auto">
         Gift Card Details
     </h2>
+    <div class="flex flex-col sm:flex-row items-center p-5 ">
+        <h2 class="font-medium text-base mr-auto">
+            Wallet Amount {{walletBalance|currency:"INR":"symbol"}}
+        </h2>
+    </div>
 </div>
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<!--<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
     <h2 class="text-lg font-medium mr-auto">
         Wallet Amount {{walletBalance|currency:"INR":"symbol"}}
     </h2>
-</div>
+</div>-->
 <div id="icon-dismiss-alert" class="p-5" [hidden]="isSuccess!=1">
     <div class="preview">
         <div class="alert alert-success alert-dismissible show flex items-center mb-2" role="alert">
@@ -39,14 +44,37 @@
         </div>
     </div>
 </div>
+<ng-container *ngIf="isTileShow">
+    <div class="intro-y grid grid-cols-12 gap-5 mt-5">
+        <!-- BEGIN: Item List -->
+        <div class="intro-y col-span-12 sm:col-span-12">
+            <div class="grid grid-cols-12 gap-5 mt-5 pt-5 mar-padtop0">
+                <ng-container *ngFor="let catalog of catalogs">
+                    <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-item-modal"
+                        class="intro-y block col-span-12 sm:col-span-6 2xl:col-span-2" (click)="selectCatalog(catalog)">
+                        <div class="box rounded-md p-3 relative zoom-in">
+                            <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
+                                <div class="absolute top-0 left-0 w-full h-full image-fit">
+                                    <img alt="{{catalog.imageFileName}}" class="rounded-md"
+                                        src="{{ imagUrl + catalog.imageFileName }}">
+                                </div>
+                            </div>
+                            <div class="block font-medium text-center truncate mt-3">{{catalog.catalogName}}</div>
+                        </div>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>
 <div class="grid grid-cols-12 gap-6 mt-5">
-    <ng-container *ngIf="isTileShow">
+    <!--<ng-container *ngIf="isTileShow">
         <ng-container *ngFor="let catalog of catalogs">
             <a href="javascript:;"
                 class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary"
                 (click)="selectCatalog(catalog)">
-                <img src="{{ imagUrl + catalog.imageFileName }}" alt="{{catalog.imageFileName}}" />
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                <img src="{{ imagUrl + catalog.imageFileName }}" alt="{{catalog.imageFileName}}" />-->
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     icon-name="gift" data-lucide="gift" class="lucide lucide-gift block w-12 h-12 text-primary mx-auto">
                     <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -55,10 +83,10 @@
                     <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"></path>
                     <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"></path>
                 </svg> -->
-                <div class="font-medium text-center text-base mt-3">{{catalog.catalogName}}</div>
+    <!--<div class="font-medium text-center text-base mt-3">{{catalog.catalogName}}</div>
             </a>
         </ng-container>
-    </ng-container>
+    </ng-container>-->
     <ng-container *ngIf="!isTileShow">
         <a href="javascript:;"
             class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-primary dark:border-primary customGiftCard">

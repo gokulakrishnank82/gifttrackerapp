@@ -1,4 +1,4 @@
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
     <h2 class="text-lg font-medium mr-auto">
         Catalog Details
     </h2>
@@ -37,7 +37,7 @@
 </div>
 <div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
 
-    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400 mar-top10">
         <!--<div class="font-medium text-base">Profile Settings</div>-->
         <form novalidate [formGroup]="addForm" (ngSubmit)="onSubmit()">
             <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
@@ -64,28 +64,79 @@
                     <div *ngIf="submitted && formControls.catalogTypeId.errors && formControls.catalogTypeId.errors.required"
                         class="text-danger mt-2">Catalog Type is required</div>
                 </div>
+
                 <div class="intro-y col-span-12 sm:col-span-6">
-                    <label class="btn btn-secondary" (click)="fileInput.value = null">
-                        Choose File
-                        <input #fileInput type="file" accept=".jpg,.png,.gif" (change)="chooseFile(fileInput.files)" />
+                    <!--<label for="input-wizard-1" class="form-label">Catalog Detail
                     </label>
-                </div>
-                <div class="intro-y col-span-12 sm:col-span-12">
-                    <label for="input-wizard-1" class="form-label">Catalog Detail
+                    <textarea id="detail" formControlName="detail" name="detail" rows="4" cols="50"></textarea>-->
+                    <label for="detail" class="form-label w-full flex flex-col sm:flex-row"> Catalog Detail
                     </label>
-                    <textarea id="detail" formControlName="detail" name="detail" rows="4" cols="50"></textarea>
+                    <textarea id="detail" class="form-control" name="detail" placeholder=""
+                        formControlName="detail"></textarea>
                 </div>
-                <div class="intro-y col-span-12 sm:col-span-12">
-                    <label for="input-wizard-1" class="form-label">Terms And Conditions
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <!--<label for="input-wizard-1" class="form-label">Terms And Conditions
                     </label>
                     <textarea id="termsAndCondition" formControlName="termsAndCondition" name="termsAndCondition"
-                        rows="4" cols="50"></textarea>
-                </div>
-                <div class="intro-y col-span-12 sm:col-span-12">
-                    <label for="input-wizard-1" class="form-label">About
+                        rows="4" cols="50"></textarea>-->
+                    <label for="termsAndCondition" class="form-label w-full flex flex-col sm:flex-row"> Terms And
+                        Conditions
                     </label>
-                    <textarea id="about" formControlName="about" name="about" rows="4" cols="50"></textarea>
+                    <textarea id="termsAndCondition" class="form-control" name="termsAndCondition" placeholder=""
+                        formControlName="termsAndCondition"></textarea>
+
                 </div>
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <!--<label for="input-wizard-1" class="form-label">About
+                    </label>
+                    <textarea id="about" formControlName="about" name="about" rows="4" cols="50"></textarea>-->
+                    <label for="about" class="form-label w-full flex flex-col sm:flex-row"> About
+                    </label>
+                    <textarea id="about" class="form-control" name="about" placeholder=""
+                        formControlName="about"></textarea>
+
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-6">&nbsp;</div>
+                <div class="intro-y col-span-12 sm:col-span-6">
+                    <!--<label class="btn btn-secondary" (click)="fileInput.value = null">
+                        Choose File
+                        <input #fileInput type="file" accept=".jpg,.png,.gif" (change)="chooseFile(fileInput.files)" />
+                    </label>-->
+
+
+                    <!--<div class="dropzone">
+                        <div class="fallback">
+                            <input name="file" type="file" />
+                        </div>
+                        <div class="dz-message" data-dz-message>
+                            <div class="text-lg font-medium">Drop files here or click to upload.</div>
+                            <div class="text-slate-500"> This is just a demo dropzone. Selected files are <span
+                                    class="font-medium">not</span> actually uploaded. </div>
+                        </div>
+                    </div>-->
+                    <div
+                        class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="file-upload"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="file-upload" name="file-upload" #fileInput type="file"
+                                        accept=".jpg,.png,.gif" (change)="chooseFile(fileInput.files)" class="sr-only">
+                                </label>
+                                <!--<p class="pl-1">or drag and drop</p>-->
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 sm:col-span-6">&nbsp;</div>
                 <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
                     <button type="submit" class="btn btn-primary w-24">Submit</button>
                     <button type="reset" class="btn btn-secondary w-24 ml-2" (click)="reset()">Cancel</button>
@@ -101,7 +152,7 @@
         <div class="intro-y box mt-5">
             <div class="p-5" id="striped-rows-table">
                 <div class="preview">
-                    <div class="overflow-x-auto" *ngIf="catalogs.length > 0">
+                    <div class="overflow-x-auto">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -150,12 +201,17 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr *ngIf="catalogs.length === 0">
+
+                                    <td></td>
+                                    <td>No Records</td>
+
+                                    <td></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div *ngIf="catalogs.length === 0">
-                        No Records
-                    </div>
+
                     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
                         <nav class="w-full sm:w-auto sm:mr-auto">
                             <ul class="pagination">

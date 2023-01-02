@@ -1,4 +1,4 @@
-<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8 mar-top10">
     <h2 class="text-lg font-medium mr-auto">
         Employee bulkupload Details
     </h2>
@@ -35,32 +35,45 @@
         </div>
     </div>
 </div>
-<div class="intro-y box py-10 sm:py-20 mt-5 customFormBk">
-    <div class="px-5 sm:px-10 mt-10 pt-10  border-slate-200/60 dark:border-darkmode-400">
+
+
+
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap mt-2 items-end">
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" accept=".xlsx,.xls"
             style="display:none;">
-        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-        <!-- <button style="margin-left: 5px;" type="button" class="btn btn-success">Download Template</button> -->
-        <a [href]="downloadTemplate">
-            Download Template
-        </a>
-        <div class="col-md-12">
-            <span class="upload" *ngIf="progress > 0">
-                {{progress}}%
-            </span>
-            <span class="upload" *ngIf="message">
-                {{message}}
-            </span>
+        <button class="btn btn-primary shadow-md mr-2" (click)="file.click()">Upload File</button>
+
+        <span class="upload" *ngIf="progress > 0">
+            {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+            {{message}}
+        </span>
+
+        <div class="form-check form-switch w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0">
+            <div class="w-56 relative text-slate-500">
+                <a [href]="downloadTemplate" class="btn btn-outline-secondary hidden sm:flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        icon-name="file" data-lucide="file" class="lucide lucide-file w-4 h-4 mr-2">
+                        <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg> Download Template
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
+
+
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 lg:col-span-12">
-        <div class="intro-y box mt-5">
+        <div class="intro-y box mt-5 mar-top10">
             <div class="p-5" id="striped-rows-table">
                 <div class="preview">
-                    <div class="overflow-x-auto" *ngIf="bulkuploadHistory.length > 0">
+                    <div class="overflow-x-auto">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -70,7 +83,7 @@
                                     <th class="whitespace-nowrap">Failed</th>
                                     <th class="whitespace-nowrap">Upload By</th>
                                     <th class="whitespace-nowrap">Upload Date</th>
-                                    <th class="whitespace-nowrap">Detail</th>
+                                    <th class="whitespace-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,20 +95,36 @@
                                     <td>{{bulkupload.uploadedBy}}</td>
                                     <td>{{bulkupload.uploadedDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
                                     <td>
-                                        <button
+                                        <!--<button
                                             class="bg-pink-500 active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                             type="button" (click)="employeeDetail(bulkupload.employeeHeaderId)">
                                             Detail
-                                        </button>
+                                        </button>-->
+                                        <a class="flex items-center text-primary mr-auto" href="javascript:;"
+                                            (click)="employeeDetail(bulkupload.employeeHeaderId)"> <svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" icon-name="eye"
+                                                data-lucide="eye" class="lucide lucide-eye w-4 h-4 mr-1">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg> View Detail </a>
                                     </td>
+                                </tr>
+                                <tr *ngIf="bulkuploadHistory.length === 0">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Records</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div *ngIf="bulkuploadHistory.length === 0">
-                        No Records
-                    </div>
+
                     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
                         <nav class="w-full sm:w-auto sm:mr-auto">
                             <ul class="pagination">

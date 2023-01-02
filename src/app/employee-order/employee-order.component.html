@@ -29,6 +29,15 @@
                                     <td>{{employee.total}}</td>
                                     <td>{{employee.deliveryMode}}</td>
                                 </tr>
+                                <tr *ngIf="employeeOrder.length === 0">
+
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Records</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
