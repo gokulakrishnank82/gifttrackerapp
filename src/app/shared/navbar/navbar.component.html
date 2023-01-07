@@ -1,3 +1,50 @@
+<!-- BEGIN: Mobile Menu -->
+<div class="mobile-menu md:hidden">
+  <div class="mobile-menu-bar">
+    <a href="javascript:;" class="flex mr-auto">
+      <img alt="Midone - HTML Admin Template" class="w-6" src="../assets/images/logoebs.png">
+    </a>
+    <a href="javascript:;" class="mobile-menu-toggler"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" icon-name="bar-chart-2" data-lucide="bar-chart-2"
+        class="lucide lucide-bar-chart-2 w-8 h-8 text-white transform -rotate-90">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg> </a>
+  </div>
+  <div class="scrollable">
+    <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle"
+        class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+    <ul class="scrollable__content py-2">
+      <li>
+        <a href="javascript:;" class="menu">
+          <div class="menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              icon-name="home" data-lucide="home" class="lucide lucide-home">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg> </div>
+          <div class="menu__title"> Dashboard <i data-lucide="chevron-down" class="menu__sub-icon "></i> </div>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;" class="menu" routerLink="/giftcatalog" routerLinkActive="menu--active">
+          <div class="menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              icon-name="shopping-bag" data-lucide="shopping-bag" class="lucide lucide-shopping-bag">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 01-8 0"></path>
+            </svg> </div>
+          <div class="menu__title"> Employee Fund History </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- END: Mobile Menu -->
+
 <div class="flex mt-[4.7rem] md:mt-0">
   <!-- BEGIN: Side Menu -->
   <nav class="side-nav">
@@ -406,3 +453,8 @@
     <!-- END: Content -->
   </div>
 </div>
+<!--<div data-url="side-menu-dark-regular-form.html"
+  class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
+  <div class="mr-4 text-slate-600 dark:text-slate-200">Dark Mode</div>
+  <div class="dark-mode-switcher__toggle border"></div>
+</div>-->

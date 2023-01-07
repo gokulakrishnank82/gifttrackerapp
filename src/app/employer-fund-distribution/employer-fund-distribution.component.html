@@ -71,8 +71,9 @@
             </div>
           </div>
           <div class="intro-y col-span-12 sm:col-span-6">
-            <label for="input-wizard-1" class="form-label">Employee Name</label>
-            <input type="text" class="form-control" id="employeeName" formControlName="employeeName" name="employeeName"
+            <div>
+              <label>Employee Namennnnnn</label>
+              <!--<input type="text" class="form-control" id="employeeName" formControlName="employeeName" name="employeeName"
               autocomplete="off" (click)="showNameSearch = true" (keyup)="searchEmployee('name',$event)">
             <div class="card" style="position:absolute w-100" [hidden]="!showNameSearch">
               <div class="search">
@@ -84,6 +85,16 @@
               <p class="search" *ngIf="searchedEmployees && searchedEmployees.length <= 0 && !isSearching">No Employee
                 found</p>
               <p class="search" [hidden]="!isSearching">Searching employee names...</p>
+            </div>-->
+              <div class="mt-2">
+                <select data-placeholder="Select your favorite actors" class="tom-select w-full">
+                  <option value="1">Leonardo DiCaprio</option>
+                  <option value="2">Johnny Deep</option>
+                  <option value="3">Robert Downey, Jr</option>
+                  <option value="4">Samuel L. Jackson</option>
+                  <option value="5">Morgan Freeman</option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="intro-y col-span-12 sm:col-span-6">
